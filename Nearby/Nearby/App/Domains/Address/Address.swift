@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Address: Codable {
+struct Address: Encodable {
     
     // MARK: - Properties
     

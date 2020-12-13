@@ -6,28 +6,30 @@
 //
 
 import UIKit
+import RxSwift
 
-final class AppCoordinator: Coordinator {
+final class AppCoordinator: BaseCoordinator<Void> {
     
     // MARK: - Properties
     
-    private(set) var childCoordinators: [Coordinator] = []
     private let window: UIWindow
-    private let userDefaults: UserDefaults
     
     // MARK: - Initialization
     
-    init(window: UIWindow, userDefaults: UserDefaults) {
+    init(window: UIWindow, navigationController: UINavigationController) {
         self.window = window
-        self.userDefaults = userDefaults
+        
+        super.init(navigationController: navigationController)
     }
-}
-
-// MARK: - Coordinator
-
-extension AppCoordinator {
     
-    func start() {
-        //
+    // MARK: - Override methods
+    
+    override func start() -> Observable<Void> {
+        let coordinator = RequestAddressCoordinator(navigationController: navigationController)
+        
+        window.rootViewController = navigationController
+        window.makeKeyAndVisible()
+        
+        return coordinate(to: coordinator)
     }
 }
