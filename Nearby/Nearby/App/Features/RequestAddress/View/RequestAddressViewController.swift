@@ -20,11 +20,14 @@ class RequestAddressViewController: UIViewController {
     init(viewModel: RequestAddressViewModel) {
         self.viewModel = viewModel
         
-        super.init()
+        super.init(
+            nibName: String(describing: RequestAddressViewController.self),
+            bundle: Bundle(for: RequestAddressViewController.self)
+        )
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        return nil
     }
     
     override func viewDidLoad() {
