@@ -10,11 +10,14 @@
 		4D5D20AB2585928B00A0A453 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D20AA2585928B00A0A453 /* AppDelegate.swift */; };
 		4D5D20AD2585928B00A0A453 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D20AC2585928B00A0A453 /* SceneDelegate.swift */; };
 		4D5D20AF2585928B00A0A453 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D20AE2585928B00A0A453 /* ViewController.swift */; };
-		4D5D20B22585928B00A0A453 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D5D20B02585928B00A0A453 /* Main.storyboard */; };
 		4D5D20B42585928C00A0A453 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D5D20B32585928C00A0A453 /* Assets.xcassets */; };
 		4D5D20B72585928C00A0A453 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D5D20B52585928C00A0A453 /* LaunchScreen.storyboard */; };
 		4D5D20C22585928D00A0A453 /* NearbyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D20C12585928D00A0A453 /* NearbyTests.swift */; };
 		4D5D20CD2585928D00A0A453 /* NearbyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D20CC2585928D00A0A453 /* NearbyUITests.swift */; };
+		4D5D20F225859FAD00A0A453 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D20F125859FAD00A0A453 /* Coordinator.swift */; };
+		4D5D20F82585A03600A0A453 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D20F72585A03600A0A453 /* AppCoordinator.swift */; };
+		4D5D210D2585A35600A0A453 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D210C2585A35600A0A453 /* Address.swift */; };
+		4D5D21152585A7DD00A0A453 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D21142585A7DD00A0A453 /* Location.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +42,6 @@
 		4D5D20AA2585928B00A0A453 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D5D20AC2585928B00A0A453 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4D5D20AE2585928B00A0A453 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4D5D20B12585928B00A0A453 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4D5D20B32585928C00A0A453 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D5D20B62585928C00A0A453 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4D5D20B82585928C00A0A453 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +51,10 @@
 		4D5D20C82585928D00A0A453 /* NearbyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NearbyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D5D20CC2585928D00A0A453 /* NearbyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyUITests.swift; sourceTree = "<group>"; };
 		4D5D20CE2585928D00A0A453 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D5D20F125859FAD00A0A453 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		4D5D20F72585A03600A0A453 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		4D5D210C2585A35600A0A453 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		4D5D21142585A7DD00A0A453 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +105,8 @@
 		4D5D20A92585928B00A0A453 /* Nearby */ = {
 			isa = PBXGroup;
 			children = (
-				4D5D20AA2585928B00A0A453 /* AppDelegate.swift */,
-				4D5D20AC2585928B00A0A453 /* SceneDelegate.swift */,
-				4D5D20AE2585928B00A0A453 /* ViewController.swift */,
-				4D5D20B02585928B00A0A453 /* Main.storyboard */,
-				4D5D20B32585928C00A0A453 /* Assets.xcassets */,
-				4D5D20B52585928C00A0A453 /* LaunchScreen.storyboard */,
-				4D5D20B82585928C00A0A453 /* Info.plist */,
+				4D5D20E025859B7700A0A453 /* App */,
+				4D5D20E125859B8100A0A453 /* Supporting Files */,
 			);
 			path = Nearby;
 			sourceTree = "<group>";
@@ -126,6 +127,110 @@
 				4D5D20CE2585928D00A0A453 /* Info.plist */,
 			);
 			path = NearbyUITests;
+			sourceTree = "<group>";
+		};
+		4D5D20E025859B7700A0A453 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				4D5D20F72585A03600A0A453 /* AppCoordinator.swift */,
+				4D5D20AA2585928B00A0A453 /* AppDelegate.swift */,
+				4D5D20AC2585928B00A0A453 /* SceneDelegate.swift */,
+				4D5D20E325859DB300A0A453 /* Domains */,
+				4D5D20FC2585A18200A0A453 /* Extensions */,
+				4D5D20E425859DD400A0A453 /* Features */,
+				4D5D20EF25859F8200A0A453 /* Utils */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		4D5D20E125859B8100A0A453 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4D5D20B32585928C00A0A453 /* Assets.xcassets */,
+				4D5D20B52585928C00A0A453 /* LaunchScreen.storyboard */,
+				4D5D20B82585928C00A0A453 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4D5D20E325859DB300A0A453 /* Domains */ = {
+			isa = PBXGroup;
+			children = (
+				4D5D210B2585A34C00A0A453 /* Address */,
+			);
+			path = Domains;
+			sourceTree = "<group>";
+		};
+		4D5D20E425859DD400A0A453 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				4D5D20E525859DF100A0A453 /* RequestAddress */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		4D5D20E525859DF100A0A453 /* RequestAddress */ = {
+			isa = PBXGroup;
+			children = (
+				4D5D20EB25859E7000A0A453 /* Coordinator */,
+				4D5D20EA25859E6D00A0A453 /* View */,
+				4D5D20E925859E5A00A0A453 /* ViewModel */,
+			);
+			path = RequestAddress;
+			sourceTree = "<group>";
+		};
+		4D5D20E925859E5A00A0A453 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4D5D20EA25859E6D00A0A453 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4D5D20AE2585928B00A0A453 /* ViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4D5D20EB25859E7000A0A453 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		4D5D20EF25859F8200A0A453 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4D5D20F025859F8700A0A453 /* Coordinator */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		4D5D20F025859F8700A0A453 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				4D5D20F125859FAD00A0A453 /* Coordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		4D5D20FC2585A18200A0A453 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4D5D210B2585A34C00A0A453 /* Address */ = {
+			isa = PBXGroup;
+			children = (
+				4D5D210C2585A35600A0A453 /* Address.swift */,
+				4D5D21142585A7DD00A0A453 /* Location.swift */,
+			);
+			path = Address;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +338,6 @@
 			files = (
 				4D5D20B72585928C00A0A453 /* LaunchScreen.storyboard in Resources */,
 				4D5D20B42585928C00A0A453 /* Assets.xcassets in Resources */,
-				4D5D20B22585928B00A0A453 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +362,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D5D210D2585A35600A0A453 /* Address.swift in Sources */,
+				4D5D20F225859FAD00A0A453 /* Coordinator.swift in Sources */,
 				4D5D20AF2585928B00A0A453 /* ViewController.swift in Sources */,
+				4D5D20F82585A03600A0A453 /* AppCoordinator.swift in Sources */,
 				4D5D20AB2585928B00A0A453 /* AppDelegate.swift in Sources */,
 				4D5D20AD2585928B00A0A453 /* SceneDelegate.swift in Sources */,
+				4D5D21152585A7DD00A0A453 /* Location.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,14 +404,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		4D5D20B02585928B00A0A453 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4D5D20B12585928B00A0A453 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4D5D20B52585928C00A0A453 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -437,16 +537,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = TTSKDZ455K;
 				INFOPLIST_FILE = Nearby/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thiagocenturion.Nearby;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -456,16 +558,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = TTSKDZ455K;
 				INFOPLIST_FILE = Nearby/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thiagocenturion.Nearby;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
