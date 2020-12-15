@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: scene)
         self.window = window
         
-        appCoordinator = AppCoordinator(window: window, navigationController: UINavigationController())
+        appCoordinator = AppCoordinator(window: window, navigationController: NavigationController())
         appCoordinator?.start()
             .subscribe()
             .disposed(by: disposeBag)

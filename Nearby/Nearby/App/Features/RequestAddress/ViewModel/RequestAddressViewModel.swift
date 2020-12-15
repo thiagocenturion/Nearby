@@ -8,23 +8,27 @@
 import RxSwift
 import RxRelay
 import CoreLocation
+import UIKit
 
 final class RequestAddressViewModel {
     // MARK: - Properties
+    
+    let title: String
     
     private let disposeBag = DisposeBag()
     private let locationManager: CLLocationManager
     
     // MARK: - Actions
     
-    let isCurrentLocationLoading = BehaviorRelay<Bool>(value: false)
     let willUseCurrentLocation = PublishRelay<Void>()
-    let willSearchAddress = PublishRelay<Void>()
-    let currentLocationAddress = PublishRelay<Address>()
+    let willRegisterAddress = PublishRelay<Void>()
+    let currentLocationLocation = PublishRelay<Location>()
+    let alert = PublishRelay<AlertViewModel>()
     
     // MARK: - Initialization
     
-    init(locationManager: CLLocationManager) {
+    init(title: String, locationManager: CLLocationManager) {
+        self.title = title
         self.locationManager = locationManager
         
         bind()
@@ -36,10 +40,70 @@ final class RequestAddressViewModel {
 extension RequestAddressViewModel {
     
     private func bind() {
-        willUseCurrentLocation
-            .subscribe(onNext: { [weak self] in
-                self?.locationManager.requestWhenInUseAuthorization()
-            })
+        let willUseCurrentLocationShared = willUseCurrentLocation.compactMap { [locationManager] in locationManager }.share()
+        
+        willUseCurrentLocationShared
+            .filter { _ in CLLocationManager.authorizationStatus() == .authorizedWhenInUse }
+            .bind(to: authorizedBinder)
             .disposed(by: disposeBag)
+            
+        willUseCurrentLocationShared
+            .filter { _ in CLLocationManager.authorizationStatus() == .notDetermined }
+            .bind(to: notDeterminedBinder)
+            .disposed(by: disposeBag)
+            
+        willUseCurrentLocationShared
+            .filter { _ in CLLocationManager.authorizationStatus() == .denied }
+            .bind(to: deniedBinder)
+            .disposed(by: disposeBag)
+        
+        locationManager.rx.didChangeAuthorization
+            .filter { $0.status == .authorizedWhenInUse }
+            .map { $0.manager }
+            .bind(to: authorizedBinder)
+            .disposed(by: disposeBag)
+    }
+    
+    private var authorizedBinder: Binder<CLLocationManager> {
+        return Binder(self) { target, locationManager in
+            if let location = locationManager.location {
+                target.currentLocationLocation.accept(
+                    .init(
+                        latitude: location.coordinate.latitude,
+                        longitude: location.coordinate.longitude
+                    )
+                )
+            }
+        }
+    }
+    
+    private var notDeterminedBinder: Binder<CLLocationManager> {
+        return Binder(self) { _, locationManager in
+            locationManager.requestWhenInUseAuthorization()
+        }
+    }
+    
+    private var deniedBinder: Binder<CLLocationManager> {
+        return Binder(self) { target, locationManager in
+            let alertViewModel = AlertViewModel(
+                title: "request_address_denied_title".localized,
+                message: "request_address_denied_message".localized,
+                preferredStyle: .alert,
+                confirmActionViewModel: .init(title: "request_address_denied_confirm".localized),
+                cancelActionViewModel: .init(title: "request_address_denied_cancel".localized)
+            )
+            
+            alertViewModel.confirmActionViewModel?.tap
+                .subscribe(onNext: {
+                    UIApplication.shared.open(
+                        URL(string: UIApplication.openSettingsURLString)!,
+                        options: [:],
+                        completionHandler: nil
+                    )
+                })
+                .disposed(by: target.disposeBag)
+            
+            target.alert.accept(alertViewModel)
+        }
     }
 }
