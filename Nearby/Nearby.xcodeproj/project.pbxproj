@@ -9,7 +9,10 @@
 /* Begin PBXBuildFile section */
 		4D078638258869550042636F /* UINavigationController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D078637258869550042636F /* UINavigationController+Rx.swift */; };
 		4D07864325886BE20042636F /* AlertActionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D07864225886BE20042636F /* AlertActionViewModel.swift */; };
+		4D07864E258878760042636F /* RequestAddressViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D07864D258878760042636F /* RequestAddressViewModelTests.swift */; };
 		4D14727A2585B0340006C3CE /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 4D1472792585B0340006C3CE /* SwiftyJSON */; };
+		4D2784C02588802B00B6A79A /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = 4D2784BF2588802B00B6A79A /* Quick */; };
+		4D2784C62588803A00B6A79A /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 4D2784C52588803A00B6A79A /* Nimble */; };
 		4D30042A2585BE7C00782708 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4D3004292585BE7C00782708 /* RxSwift */; };
 		4D30042C2585BE7C00782708 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 4D30042B2585BE7C00782708 /* RxTest */; };
 		4D30042E2585BE7C00782708 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 4D30042D2585BE7C00782708 /* RxRelay */; };
@@ -23,7 +26,6 @@
 		4D5D20AD2585928B00A0A453 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D20AC2585928B00A0A453 /* SceneDelegate.swift */; };
 		4D5D20B42585928C00A0A453 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D5D20B32585928C00A0A453 /* Assets.xcassets */; };
 		4D5D20B72585928C00A0A453 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D5D20B52585928C00A0A453 /* LaunchScreen.storyboard */; };
-		4D5D20C22585928D00A0A453 /* NearbyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D20C12585928D00A0A453 /* NearbyTests.swift */; };
 		4D5D20CD2585928D00A0A453 /* NearbyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D20CC2585928D00A0A453 /* NearbyUITests.swift */; };
 		4D5D20F225859FAD00A0A453 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D20F125859FAD00A0A453 /* BaseCoordinator.swift */; };
 		4D5D20F82585A03600A0A453 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D20F72585A03600A0A453 /* AppCoordinator.swift */; };
@@ -61,9 +63,25 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4D2784DB258880DE00B6A79A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		4D078637258869550042636F /* UINavigationController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Rx.swift"; sourceTree = "<group>"; };
 		4D07864225886BE20042636F /* AlertActionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertActionViewModel.swift; sourceTree = "<group>"; };
+		4D07864D258878760042636F /* RequestAddressViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAddressViewModelTests.swift; sourceTree = "<group>"; };
+		4D2784D1258880DE00B6A79A /* RxSwiftDependency.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RxSwiftDependency.h; sourceTree = "<group>"; };
+		4D2784D2258880DE00B6A79A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D30043C2585C61B00782708 /* RequestAddressCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAddressCoordinator.swift; sourceTree = "<group>"; };
 		4D3004442585C7EE00782708 /* RequestAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAddressViewController.swift; sourceTree = "<group>"; };
 		4D3004452585C7EE00782708 /* RequestAddressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestAddressViewController.xib; sourceTree = "<group>"; };
@@ -75,7 +93,6 @@
 		4D5D20B62585928C00A0A453 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4D5D20B82585928C00A0A453 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D5D20BD2585928D00A0A453 /* NearbyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NearbyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4D5D20C12585928D00A0A453 /* NearbyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyTests.swift; sourceTree = "<group>"; };
 		4D5D20C32585928D00A0A453 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D5D20C82585928D00A0A453 /* NearbyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NearbyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D5D20CC2585928D00A0A453 /* NearbyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyUITests.swift; sourceTree = "<group>"; };
@@ -119,6 +136,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D2784C62588803A00B6A79A /* Nimble in Frameworks */,
+				4D2784C02588802B00B6A79A /* Quick in Frameworks */,
 				4D30042C2585BE7C00782708 /* RxTest in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -157,6 +176,70 @@
 			path = String;
 			sourceTree = "<group>";
 		};
+		4D078647258878020042636F /* Spec */ = {
+			isa = PBXGroup;
+			children = (
+				4D0786482588782B0042636F /* Features */,
+			);
+			path = Spec;
+			sourceTree = "<group>";
+		};
+		4D0786482588782B0042636F /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				4D078649258878320042636F /* RequestAddress */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		4D078649258878320042636F /* RequestAddress */ = {
+			isa = PBXGroup;
+			children = (
+				4D07864A2588783D0042636F /* Coordinator */,
+				4D07864B258878420042636F /* View */,
+				4D07864C258878470042636F /* ViewModel */,
+			);
+			path = RequestAddress;
+			sourceTree = "<group>";
+		};
+		4D07864A2588783D0042636F /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		4D07864B258878420042636F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4D07864C258878470042636F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4D07864D258878760042636F /* RequestAddressViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4D2784D0258880DE00B6A79A /* RxSwiftDependency */ = {
+			isa = PBXGroup;
+			children = (
+				4D2784D1258880DE00B6A79A /* RxSwiftDependency.h */,
+				4D2784D2258880DE00B6A79A /* Info.plist */,
+			);
+			path = RxSwiftDependency;
+			sourceTree = "<group>";
+		};
+		4D2784DF258880F100B6A79A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4D30043A2585C5FE00782708 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,7 +262,9 @@
 				4D5D20A92585928B00A0A453 /* Nearby */,
 				4D5D20C02585928D00A0A453 /* NearbyTests */,
 				4D5D20CB2585928D00A0A453 /* NearbyUITests */,
+				4D2784D0258880DE00B6A79A /* RxSwiftDependency */,
 				4D5D20A82585928B00A0A453 /* Products */,
+				4D2784DF258880F100B6A79A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -207,7 +292,7 @@
 		4D5D20C02585928D00A0A453 /* NearbyTests */ = {
 			isa = PBXGroup;
 			children = (
-				4D5D20C12585928D00A0A453 /* NearbyTests.swift */,
+				4D078647258878020042636F /* Spec */,
 				4D5D20C32585928D00A0A453 /* Info.plist */,
 			);
 			path = NearbyTests;
@@ -408,6 +493,7 @@
 				4D5D20A32585928B00A0A453 /* Sources */,
 				4D5D20A42585928B00A0A453 /* Frameworks */,
 				4D5D20A52585928B00A0A453 /* Resources */,
+				4D2784DB258880DE00B6A79A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -441,6 +527,8 @@
 			name = NearbyTests;
 			packageProductDependencies = (
 				4D30042B2585BE7C00782708 /* RxTest */,
+				4D2784BF2588802B00B6A79A /* Quick */,
+				4D2784C52588803A00B6A79A /* Nimble */,
 			);
 			productName = NearbyTests;
 			productReference = 4D5D20BD2585928D00A0A453 /* NearbyTests.xctest */;
@@ -499,6 +587,8 @@
 			packageReferences = (
 				4D1472782585B0340006C3CE /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				4D3004282585BE7C00782708 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				4D2784BE2588802B00B6A79A /* XCRemoteSwiftPackageReference "Quick" */,
+				4D2784C42588803A00B6A79A /* XCRemoteSwiftPackageReference "Nimble" */,
 			);
 			productRefGroup = 4D5D20A82585928B00A0A453 /* Products */;
 			projectDirPath = "";
@@ -574,7 +664,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D5D20C22585928D00A0A453 /* NearbyTests.swift in Sources */,
+				4D07864E258878760042636F /* RequestAddressViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -756,6 +846,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thiagocenturion.Nearby;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -777,6 +868,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thiagocenturion.Nearby;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -791,6 +883,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TTSKDZ455K;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				INFOPLIST_FILE = NearbyTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -798,6 +891,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thiagocenturion.NearbyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -813,6 +907,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TTSKDZ455K;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				INFOPLIST_FILE = NearbyTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -820,6 +915,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thiagocenturion.NearbyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -918,6 +1014,22 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		4D2784BE2588802B00B6A79A /* XCRemoteSwiftPackageReference "Quick" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Quick";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		4D2784C42588803A00B6A79A /* XCRemoteSwiftPackageReference "Nimble" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Nimble";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 		4D3004282585BE7C00782708 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
@@ -933,6 +1045,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4D1472782585B0340006C3CE /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
+		};
+		4D2784BF2588802B00B6A79A /* Quick */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4D2784BE2588802B00B6A79A /* XCRemoteSwiftPackageReference "Quick" */;
+			productName = Quick;
+		};
+		4D2784C52588803A00B6A79A /* Nimble */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4D2784C42588803A00B6A79A /* XCRemoteSwiftPackageReference "Nimble" */;
+			productName = Nimble;
 		};
 		4D3004292585BE7C00782708 /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;

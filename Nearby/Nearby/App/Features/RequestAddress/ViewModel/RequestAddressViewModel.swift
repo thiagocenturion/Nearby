@@ -14,9 +14,9 @@ final class RequestAddressViewModel {
     // MARK: - Properties
     
     let title: String
+    let locationManager: CLLocationManager
     
     private let disposeBag = DisposeBag()
-    private let locationManager: CLLocationManager
     
     // MARK: - Actions
     
