@@ -10,6 +10,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import CoreLocation
 
 final class LocationManagerStub: LocationManagerType {
     
@@ -18,7 +19,7 @@ final class LocationManagerStub: LocationManagerType {
     var setCoordinate: Coordinate? = .mock()
     var setAuthorizationStatus: AuthorizationStatus = .notDetermined
     var setDidChangeAuthorization: Observable<AuthorizationEvent> = {
-        return Observable.just((manager: LocationManagerStub() as LocationManagerType, status: AuthorizationStatus.notDetermined))
+        return Observable.just((manager: CLLocationManager() as LocationManagerType, status: AuthorizationStatus.notDetermined))
     }()
     
     private(set) var requestWhenInUseAuthorizationCalled = false
