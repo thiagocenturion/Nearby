@@ -7,6 +7,7 @@
 
 import RxSwift
 import RxRelay
+import RxCocoa
 import CoreLocation
 import UIKit
 
@@ -54,6 +55,7 @@ extension RequestAddressViewModel {
             
         willUseCurrentLocationShared
             .filter { _ in CLLocationManager.authorizationStatus() == .denied }
+            .map { _ in () }
             .bind(to: deniedBinder)
             .disposed(by: disposeBag)
         
@@ -83,8 +85,8 @@ extension RequestAddressViewModel {
         }
     }
     
-    private var deniedBinder: Binder<CLLocationManager> {
-        return Binder(self) { target, locationManager in
+    private var deniedBinder: Binder<Void> {
+        return Binder(self) { target, _ in
             let alertViewModel = AlertViewModel(
                 title: "request_address_denied_title".localized,
                 message: "request_address_denied_message".localized,
@@ -107,3 +109,32 @@ extension RequestAddressViewModel {
         }
     }
 }
+
+#if UNIT_TEST
+
+// MARK: - Equatable
+
+extension RequestAddressViewModel: Equatable {
+    
+    static func == (lhs: RequestAddressViewModel, rhs: RequestAddressViewModel) -> Bool {
+        return lhs.title == rhs.title &&
+            lhs.locationManager == rhs.locationManager
+    }
+}
+
+// MARK: - Mock
+
+extension RequestAddressViewModel {
+    
+    static func mock(
+        title: String = "Location",
+        locationManager: CLLocationManager = .init()) -> RequestAddressViewModel {
+        
+        return .init(
+            title: title,
+            locationManager: locationManager
+        )
+    }
+}
+
+#endif
