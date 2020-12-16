@@ -35,7 +35,7 @@ final class RequestAddressViewModelTests: QuickSpec {
                     )
 
                     expect(viewModel.title) == title
-                    expect(viewModel.locationManager) == locationManager
+                    expect(viewModel.locationManager) === locationManager
                 }
             } // init
             
@@ -47,7 +47,8 @@ final class RequestAddressViewModelTests: QuickSpec {
                         
                         it("emitis alert view model to alert relay correctly") {
                             
-                            let viewModel = RequestAddressViewModel.mock()
+                            let locationManagerStub = LocationManagerStub()
+                            let viewModel = RequestAddressViewModel.mock(locationManager: locationManagerStub)
                             var alertViewModel: AlertViewModel?
                             
                             viewModel.alert
@@ -56,7 +57,9 @@ final class RequestAddressViewModelTests: QuickSpec {
                             
                             expect(alertViewModel).to(beNil())
                             
-//                            viewModel.deniedBinder.accept(())
+                            locationManagerStub.setAuthorizationStatus = .denied
+                            
+                            viewModel.willUseCurrentLocation.accept(())
                             
                             let expectedAlertViewModel = AlertViewModel(
                                 title: "request_address_denied_title".localized,
@@ -66,7 +69,7 @@ final class RequestAddressViewModelTests: QuickSpec {
                                 cancelActionViewModel: .init(title: "request_address_denied_cancel".localized)
                             )
                             
-//                            expect(alertViewModel) == expectedAlertViewModel
+                            expect(alertViewModel) == expectedAlertViewModel
                         }
                     }
                 }

@@ -52,7 +52,7 @@ extension RequestAddressCoordinator {
         }
     }
     
-    private var placesCoordinatorBinder: Binder<Location> {
+    private var placesCoordinatorBinder: Binder<Coordinate> {
         return Binder(self) { target, location in
             // TODO: push places coordinator
             target.navigationController.pushViewController(UIViewController(), animated: true)

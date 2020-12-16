@@ -21,3 +21,15 @@ final class AlertActionViewModel {
         self.title = title
     }
 }
+
+#if UNIT_TEST
+
+// MARK: - Equatable
+
+extension AlertActionViewModel: Equatable {
+    static func == (lhs: AlertActionViewModel, rhs: AlertActionViewModel) -> Bool {
+        return lhs.title == rhs.title
+    }
+}
+
+#endif

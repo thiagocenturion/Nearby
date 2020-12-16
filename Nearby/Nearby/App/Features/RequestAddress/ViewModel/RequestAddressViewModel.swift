@@ -15,7 +15,7 @@ final class RequestAddressViewModel {
     // MARK: - Properties
     
     let title: String
-    let locationManager: CLLocationManager
+    let locationManager: LocationManagerType
     
     private let disposeBag = DisposeBag()
     
@@ -23,12 +23,12 @@ final class RequestAddressViewModel {
     
     let willUseCurrentLocation = PublishRelay<Void>()
     let willRegisterAddress = PublishRelay<Void>()
-    let currentLocationLocation = PublishRelay<Location>()
+    let currentLocationLocation = PublishRelay<Coordinate>()
     let alert = PublishRelay<AlertViewModel>()
     
     // MARK: - Initialization
     
-    init(title: String, locationManager: CLLocationManager) {
+    init(title: String, locationManager: LocationManagerType) {
         self.title = title
         self.locationManager = locationManager
         
@@ -44,42 +44,42 @@ extension RequestAddressViewModel {
         let willUseCurrentLocationShared = willUseCurrentLocation.compactMap { [locationManager] in locationManager }.share()
         
         willUseCurrentLocationShared
-            .filter { _ in CLLocationManager.authorizationStatus() == .authorizedWhenInUse }
+            .filter { $0.authorizationStatus == .authorizedWhenInUse }
             .bind(to: authorizedBinder)
             .disposed(by: disposeBag)
             
         willUseCurrentLocationShared
-            .filter { _ in CLLocationManager.authorizationStatus() == .notDetermined }
+            .filter { $0.authorizationStatus == .notDetermined }
             .bind(to: notDeterminedBinder)
             .disposed(by: disposeBag)
             
         willUseCurrentLocationShared
-            .filter { _ in CLLocationManager.authorizationStatus() == .denied }
+            .filter { $0.authorizationStatus == .denied }
             .map { _ in () }
             .bind(to: deniedBinder)
             .disposed(by: disposeBag)
         
-        locationManager.rx.didChangeAuthorization
+        locationManager.didChangeAuthorization
             .filter { $0.status == .authorizedWhenInUse }
             .map { $0.manager }
             .bind(to: authorizedBinder)
             .disposed(by: disposeBag)
     }
     
-    private var authorizedBinder: Binder<CLLocationManager> {
+    private var authorizedBinder: Binder<LocationManagerType> {
         return Binder(self) { target, locationManager in
-            if let location = locationManager.location {
+            if let coordinate = locationManager.coordinate {
                 target.currentLocationLocation.accept(
                     .init(
-                        latitude: location.coordinate.latitude,
-                        longitude: location.coordinate.longitude
+                        latitude: coordinate.latitude,
+                        longitude: coordinate.longitude
                     )
                 )
             }
         }
     }
     
-    private var notDeterminedBinder: Binder<CLLocationManager> {
+    private var notDeterminedBinder: Binder<LocationManagerType> {
         return Binder(self) { _, locationManager in
             locationManager.requestWhenInUseAuthorization()
         }
@@ -118,7 +118,7 @@ extension RequestAddressViewModel: Equatable {
     
     static func == (lhs: RequestAddressViewModel, rhs: RequestAddressViewModel) -> Bool {
         return lhs.title == rhs.title &&
-            lhs.locationManager == rhs.locationManager
+            lhs.locationManager === rhs.locationManager
     }
 }
 
@@ -128,7 +128,7 @@ extension RequestAddressViewModel {
     
     static func mock(
         title: String = "Location",
-        locationManager: CLLocationManager = .init()) -> RequestAddressViewModel {
+        locationManager: LocationManagerType = LocationManagerStub()) -> RequestAddressViewModel {
         
         return .init(
             title: title,

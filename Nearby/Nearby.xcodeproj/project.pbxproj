@@ -25,8 +25,11 @@
 		4D5D20F225859FAD00A0A453 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D20F125859FAD00A0A453 /* BaseCoordinator.swift */; };
 		4D5D20F82585A03600A0A453 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D20F72585A03600A0A453 /* AppCoordinator.swift */; };
 		4D5D210D2585A35600A0A453 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D210C2585A35600A0A453 /* Address.swift */; };
-		4D5D21152585A7DD00A0A453 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D21142585A7DD00A0A453 /* Location.swift */; };
+		4D658B91258A4AFA00E0CCD2 /* LocationManagerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D658B90258A4AFA00E0CCD2 /* LocationManagerStub.swift */; };
 		4DA2DFA92588649600522ED6 /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA2DFA82588649600522ED6 /* AlertViewModel.swift */; };
+		4DC6E45A258A424C003253B1 /* LocationManagerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC6E459258A424C003253B1 /* LocationManagerType.swift */; };
+		4DC6E465258A45A6003253B1 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC6E464258A45A6003253B1 /* Coordinate.swift */; };
+		4DC6E469258A46B9003253B1 /* AuthorizationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC6E468258A46B9003253B1 /* AuthorizationStatus.swift */; };
 		4DCB4446258669C00024695C /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCB4445258669C00024695C /* NavigationController.swift */; };
 		4DE8771A25870A2300A52B08 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE8771925870A2300A52B08 /* UIViewController+Extension.swift */; };
 		4DE8772725870C7100A52B08 /* ActivityIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE8772625870C7100A52B08 /* ActivityIndicatorViewController.swift */; };
@@ -98,8 +101,11 @@
 		4D5D20F125859FAD00A0A453 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		4D5D20F72585A03600A0A453 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		4D5D210C2585A35600A0A453 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
-		4D5D21142585A7DD00A0A453 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		4D658B90258A4AFA00E0CCD2 /* LocationManagerStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerStub.swift; sourceTree = "<group>"; };
 		4DA2DFA82588649600522ED6 /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
+		4DC6E459258A424C003253B1 /* LocationManagerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerType.swift; sourceTree = "<group>"; };
+		4DC6E464258A45A6003253B1 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		4DC6E468258A46B9003253B1 /* AuthorizationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationStatus.swift; sourceTree = "<group>"; };
 		4DCB4445258669C00024695C /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		4DE8771925870A2300A52B08 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		4DE8772625870C7100A52B08 /* ActivityIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorViewController.swift; sourceTree = "<group>"; };
@@ -294,7 +300,7 @@
 				4D5D20AA2585928B00A0A453 /* AppDelegate.swift */,
 				4D5D20AC2585928B00A0A453 /* SceneDelegate.swift */,
 				4DCB4444258669A00024695C /* Commom ViewControllers */,
-				4D5D20E325859DB300A0A453 /* Domains */,
+				4D5D20E325859DB300A0A453 /* Models */,
 				4DE8771825870A0C00A52B08 /* Extensions */,
 				4D5D20E425859DD400A0A453 /* Features */,
 				4D5D20EF25859F8200A0A453 /* Utils */,
@@ -312,12 +318,13 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		4D5D20E325859DB300A0A453 /* Domains */ = {
+		4D5D20E325859DB300A0A453 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4DC6E461258A458B003253B1 /* Coordinate */,
 				4D5D210B2585A34C00A0A453 /* Address */,
 			);
-			path = Domains;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		4D5D20E425859DD400A0A453 /* Features */ = {
@@ -350,6 +357,7 @@
 		4D5D20EF25859F8200A0A453 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4DC6E458258A4229003253B1 /* LocationManager */,
 				4D5D20F025859F8700A0A453 /* BaseCoordinator */,
 			);
 			path = Utils;
@@ -367,7 +375,6 @@
 			isa = PBXGroup;
 			children = (
 				4D5D210C2585A35600A0A453 /* Address.swift */,
-				4D5D21142585A7DD00A0A453 /* Location.swift */,
 			);
 			path = Address;
 			sourceTree = "<group>";
@@ -403,6 +410,24 @@
 				4D07864225886BE20042636F /* AlertActionViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4DC6E458258A4229003253B1 /* LocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				4DC6E459258A424C003253B1 /* LocationManagerType.swift */,
+				4D658B90258A4AFA00E0CCD2 /* LocationManagerStub.swift */,
+				4DC6E468258A46B9003253B1 /* AuthorizationStatus.swift */,
+			);
+			path = LocationManager;
+			sourceTree = "<group>";
+		};
+		4DC6E461258A458B003253B1 /* Coordinate */ = {
+			isa = PBXGroup;
+			children = (
+				4DC6E464258A45A6003253B1 /* Coordinate.swift */,
+			);
+			path = Coordinate;
 			sourceTree = "<group>";
 		};
 		4DCB4444258669A00024695C /* Commom ViewControllers */ = {
@@ -615,6 +640,8 @@
 				4DE8775E258799F800A52B08 /* CLLocationManagerEvents+Rx.swift in Sources */,
 				4D07864325886BE20042636F /* AlertActionViewModel.swift in Sources */,
 				4DE8775F258799F800A52B08 /* Helpers.swift in Sources */,
+				4DC6E469258A46B9003253B1 /* AuthorizationStatus.swift in Sources */,
+				4D658B91258A4AFA00E0CCD2 /* LocationManagerStub.swift in Sources */,
 				4DE87760258799F800A52B08 /* RxKeyPaths.swift in Sources */,
 				4DE8771A25870A2300A52B08 /* UIViewController+Extension.swift in Sources */,
 				4DA2DFA92588649600522ED6 /* AlertViewModel.swift in Sources */,
@@ -622,6 +649,8 @@
 				4DE8772725870C7100A52B08 /* ActivityIndicatorViewController.swift in Sources */,
 				4D5D210D2585A35600A0A453 /* Address.swift in Sources */,
 				4D5D20F225859FAD00A0A453 /* BaseCoordinator.swift in Sources */,
+				4DC6E45A258A424C003253B1 /* LocationManagerType.swift in Sources */,
+				4DC6E465258A45A6003253B1 /* Coordinate.swift in Sources */,
 				4D5D20F82585A03600A0A453 /* AppCoordinator.swift in Sources */,
 				4D5D20AB2585928B00A0A453 /* AppDelegate.swift in Sources */,
 				4DE877412587162E00A52B08 /* String+Extension.swift in Sources */,
@@ -631,7 +660,6 @@
 				4D30044C2585C81B00782708 /* RequestAddressViewModel.swift in Sources */,
 				4D5D20AD2585928B00A0A453 /* SceneDelegate.swift in Sources */,
 				4DCB4446258669C00024695C /* NavigationController.swift in Sources */,
-				4D5D21152585A7DD00A0A453 /* Location.swift in Sources */,
 				4DE8775B258799F800A52B08 /* RxCLLocationManagerDelegateProxy.swift in Sources */,
 				4D3004462585C7EE00782708 /* RequestAddressViewController.swift in Sources */,
 				4DE8775D258799F800A52B08 /* RxSelectors.swift in Sources */,

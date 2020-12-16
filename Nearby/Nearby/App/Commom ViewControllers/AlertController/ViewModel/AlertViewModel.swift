@@ -32,3 +32,19 @@ final class AlertViewModel {
         self.cancelActionViewModel = cancelActionViewModel
     }
 }
+
+#if UNIT_TEST
+
+// MARK: - Equatable
+
+extension AlertViewModel: Equatable {
+    static func == (lhs: AlertViewModel, rhs: AlertViewModel) -> Bool {
+        return lhs.title == rhs.title &&
+            lhs.message == rhs.message &&
+            lhs.preferredStyle == rhs.preferredStyle &&
+            lhs.confirmActionViewModel == rhs.confirmActionViewModel &&
+            lhs.cancelActionViewModel == rhs.cancelActionViewModel
+    }
+}
+
+#endif
