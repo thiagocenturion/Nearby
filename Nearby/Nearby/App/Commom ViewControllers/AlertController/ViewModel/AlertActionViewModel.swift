@@ -32,4 +32,12 @@ extension AlertActionViewModel: Equatable {
     }
 }
 
+// MARK: - Mock
+
+extension AlertActionViewModel {
+    static func mock(title: String? = "Title Action") -> AlertActionViewModel {
+        return .init(title: title)
+    }
+}
+
 #endif

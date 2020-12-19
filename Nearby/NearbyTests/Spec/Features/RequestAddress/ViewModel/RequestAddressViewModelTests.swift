@@ -27,14 +27,23 @@ final class RequestAddressViewModelTests: QuickSpec {
                 it("configures the properties correctly") {
 
                     let title = "Location"
+                    let description = "Where are you?"
+                    let currentLocationText = "USE CURRENT LOCATION"
+                    let registerAddressText = "REGISTER ADDRESS"
                     let locationManager = CLLocationManager()
 
                     let viewModel = RequestAddressViewModel(
                         title: title,
+                        description: description,
+                        currentLocationText: currentLocationText,
+                        registerAddressText: registerAddressText,
                         locationManager: locationManager
                     )
 
                     expect(viewModel.title) == title
+                    expect(viewModel.description) == description
+                    expect(viewModel.currentLocationText) == currentLocationText
+                    expect(viewModel.registerAddressText) == registerAddressText
                     expect(viewModel.locationManager) === locationManager
                 }
             } // init

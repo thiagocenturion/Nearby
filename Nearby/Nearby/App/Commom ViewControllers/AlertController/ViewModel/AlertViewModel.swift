@@ -47,4 +47,24 @@ extension AlertViewModel: Equatable {
     }
 }
 
+// MARK: - Mock
+
+extension AlertViewModel {
+    
+    static func mock(
+        title: String? = "Title",
+        message: String? = "Message",
+        preferredStyle: UIAlertController.Style = .alert,
+        confirmActionViewModel: AlertActionViewModel? = .mock(),
+        cancelActionViewModel: AlertActionViewModel? = .mock()) -> AlertViewModel {
+        
+        return .init(
+            title: title,
+            message: message,
+            preferredStyle: preferredStyle,
+            confirmActionViewModel: confirmActionViewModel,
+            cancelActionViewModel: cancelActionViewModel)
+    }
+}
+
 #endif

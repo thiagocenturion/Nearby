@@ -12,25 +12,13 @@ class RequestAddressViewController: UIViewController {
     
     // MARK: - Outlets
     
-    @IBOutlet private weak var descriptionLabel: UILabel! {
-        didSet {
-            descriptionLabel.text = "request_address_description".localized
-        }
-    }
-    @IBOutlet private weak var currentLocationButton: UIButton! {
-        didSet {
-            currentLocationButton.setTitle("request_address_current_location".localized, for: .normal)
-        }
-    }
-    @IBOutlet private weak var registerAddressButton: UIButton! {
-        didSet {
-            registerAddressButton.setTitle("request_address_register_address".localized, for: .normal)
-        }
-    }
+    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var currentLocationButton: UIButton!
+    @IBOutlet private weak var registerAddressButton: UIButton!
     
     // MARK: - Properties
     
-    private let viewModel: RequestAddressViewModel
+    let viewModel: RequestAddressViewModel
     private let disposeBag = DisposeBag()
     
     // MARK: - Initialization
@@ -56,18 +44,24 @@ extension RequestAddressViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = viewModel.title
-        
+        setup()
         bind()
     }
 }
 
 
-// MARK: - Binding
+// MARK: - Private methods
 
 extension RequestAddressViewController {
     
-    func bind() {
+    private func setup() {
+        title = viewModel.title
+        descriptionLabel.text = viewModel.description
+        currentLocationButton.setTitle(viewModel.currentLocationText, for: .normal)
+        registerAddressButton.setTitle(viewModel.registerAddressText, for: .normal)
+    }
+    
+    private func bind() {
         currentLocationButton.rx.tap
             .bind(to: viewModel.willUseCurrentLocation)
             .disposed(by: disposeBag)

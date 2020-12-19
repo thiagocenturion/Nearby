@@ -16,7 +16,7 @@ final class AppCoordinator: BaseCoordinator<Void> {
     
     // MARK: - Initialization
     
-    init(window: UIWindow, navigationController: UINavigationController) {
+    init(window: UIWindow, navigationController: UINavigationControllerType) {
         self.window = window
         
         super.init(navigationController: navigationController)
@@ -25,9 +25,11 @@ final class AppCoordinator: BaseCoordinator<Void> {
     // MARK: - Override methods
     
     override func start() -> Observable<Void> {
+        guard let rootViewController = navigationController as? UIViewController else { return .never() }
+        
         let coordinator = RequestAddressCoordinator(navigationController: navigationController)
         
-        window.rootViewController = navigationController
+        window.rootViewController = rootViewController
         window.makeKeyAndVisible()
         
         return coordinate(to: coordinator)

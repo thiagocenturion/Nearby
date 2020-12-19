@@ -18,6 +18,9 @@ final class RequestAddressCoordinator: BaseCoordinator<Void> {
     override func start() -> Observable<Void> {
         let viewModel = RequestAddressViewModel(
             title: "request_address_title".localized,
+            description: "request_address_description".localized,
+            currentLocationText: "request_address_current_location".localized,
+            registerAddressText: "request_address_register_address".localized,
             locationManager: CLLocationManager()
         )
         
@@ -30,7 +33,7 @@ final class RequestAddressCoordinator: BaseCoordinator<Void> {
             .disposed(by: disposeBag)
         
         viewModel.alert
-            .bind(to: navigationController.rx.alert)
+            .bind(to: navigationController.alert)
             .disposed(by: disposeBag)
         
         let viewController = RequestAddressViewController(viewModel: viewModel)
