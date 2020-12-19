@@ -10,9 +10,15 @@ import RxSwift
 
 class RequestAddressViewController: UIViewController {
     
+    // MARK: - Outlets
+    
+    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var currentLocationButton: UIButton!
+    @IBOutlet private weak var registerAddressButton: UIButton!
+    
     // MARK: - Properties
     
-    private let viewModel: RequestAddressViewModel
+    let viewModel: RequestAddressViewModel
     private let disposeBag = DisposeBag()
     
     // MARK: - Initialization
@@ -29,22 +35,39 @@ class RequestAddressViewController: UIViewController {
     required init?(coder: NSCoder) {
         return nil
     }
+}
+
+// MARK: - View Lifecycle
+
+extension RequestAddressViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        setup()
+        bind()
     }
+}
 
 
-    /*
-    // MARK: - Navigation
+// MARK: - Private methods
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension RequestAddressViewController {
+    
+    private func setup() {
+        title = viewModel.title
+        descriptionLabel.text = viewModel.description
+        currentLocationButton.setTitle(viewModel.currentLocationText, for: .normal)
+        registerAddressButton.setTitle(viewModel.registerAddressText, for: .normal)
     }
-    */
-
+    
+    private func bind() {
+        currentLocationButton.rx.tap
+            .bind(to: viewModel.willUseCurrentLocation)
+            .disposed(by: disposeBag)
+        
+        registerAddressButton.rx.tap
+            .bind(to: viewModel.willRegisterAddress)
+            .disposed(by: disposeBag)
+    }
 }

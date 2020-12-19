@@ -21,7 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: scene)
         self.window = window
         
-        appCoordinator = AppCoordinator(window: window, navigationController: UINavigationController())
+        let navigationController = UINavigationController()
+        navigationController.navigationBar.prefersLargeTitles = true
+        appCoordinator = AppCoordinator(window: window, navigationController: navigationController)
         appCoordinator?.start()
             .subscribe()
             .disposed(by: disposeBag)
