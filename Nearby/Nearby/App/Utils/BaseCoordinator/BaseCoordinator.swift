@@ -14,7 +14,7 @@ class BaseCoordinator<ResultType> {
     
     typealias CoordinationResult = ResultType
     
-    let navigationController: UINavigationController
+    let navigationController: UINavigationControllerType
     let disposeBag = DisposeBag()
     
     private let identifier = UUID()
@@ -22,7 +22,7 @@ class BaseCoordinator<ResultType> {
     
     // MARK: - Initialization
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationControllerType) {
         self.navigationController = navigationController
     }
     
