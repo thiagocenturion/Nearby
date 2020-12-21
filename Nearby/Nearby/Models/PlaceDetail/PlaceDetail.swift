@@ -1,5 +1,5 @@
 //
-//  Address.swift
+//  PlaceDetail.swift
 //  Nearby
 //
 //  Created by Thiago Rodrigues Centurion on 12/12/20.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Address: Encodable {
+struct PlaceDetail: Encodable {
     
     // MARK: - Properties
     
@@ -59,8 +59,8 @@ struct Address: Encodable {
 
 // MARK: - Equatable
 
-extension Address: Equatable {
-    static func == (lhs: Address, rhs: Address) -> Bool {
+extension PlaceDetail: Equatable {
+    static func == (lhs: PlaceDetail, rhs: PlaceDetail) -> Bool {
         return lhs.coordinate == rhs.coordinate &&
         lhs.street == rhs.street &&
         lhs.streetNumber == rhs.streetNumber &&
@@ -76,7 +76,7 @@ extension Address: Equatable {
 
 // MARK: - Mock
 
-extension Address {
+extension PlaceDetail {
     
     static func mock(
         coordinate: Coordinate,
@@ -86,7 +86,7 @@ extension Address {
         city: String,
         district: String,
         country: String,
-        postalCode: String?) -> Address {
+        postalCode: String?) -> PlaceDetail {
         
         return .init(
             coordinate: coordinate,

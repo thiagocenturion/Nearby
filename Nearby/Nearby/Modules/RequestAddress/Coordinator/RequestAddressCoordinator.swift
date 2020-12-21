@@ -7,7 +7,6 @@
 
 import UIKit
 import RxSwift
-import RxRelay
 import RxCocoa
 import CoreLocation
 
@@ -57,8 +56,11 @@ extension RequestAddressCoordinator {
     
     private var placesCoordinatorBinder: Binder<Coordinate> {
         return Binder(self) { target, location in
-            // TODO: push places coordinator
-            target.navigationController.pushViewController(UIViewController(), animated: true)
+            
+            let coordinator = PlacesCoordinator(navigationController: target.navigationController)
+            target.coordinate(to: coordinator)
+                .subscribe()
+                .disposed(by: target.disposeBag)
         }
     }
 }
