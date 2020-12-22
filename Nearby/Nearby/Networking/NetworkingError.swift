@@ -17,8 +17,11 @@ enum NetworkingError: Error {
     /// No data received from the server.
     case noData
     
+    /// Response is not NSHTTPURLResponse
+    case nonHTTPResponse(response: URLResponse)
+    
     /// The server response was invalid (unexpected format).
-    case invalidDecode(error: Error)
+    case invalidDecode
     
     /// The request was rejected: 400-499.
     case badRequest(error: Error)
@@ -32,4 +35,15 @@ enum NetworkingError: Error {
     case parseError(error: Error)
     
     case unknown
+    
+    var rawValue: String {
+        switch self {
+        case .noConnection:
+            return "error_message_no_connection".localized
+        case .badRequest:
+            return "error_message_bad_request".localized
+        case .invalidEncode, .noData, .nonHTTPResponse, .invalidDecode, .serverError, .serverErrorMessage, .parseError, .unknown:
+            return "error_message_generic".localized
+        }
+    }
 }

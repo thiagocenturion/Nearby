@@ -54,7 +54,7 @@ final class RequestAddressViewModelTests: QuickSpec {
                     
                     context("when it triggers `willUseCurrentLocation` with authorization status authorizedWhenInUse") {
                         
-                        it("triggers the coordinate to `currentLocationLocation` relay") {
+                        it("triggers the coordinate to `currentLocation` relay") {
                             
                             let locationManagerStub = LocationManagerStub()
                             let viewModel = RequestAddressViewModel.mock(locationManager: locationManagerStub)
@@ -132,7 +132,7 @@ final class RequestAddressViewModelTests: QuickSpec {
                 
                 context("when locationManager triggers `didChangeAuthorization` with authorization status authorizedWhenInUse") {
                     
-                    it("triggers the coordinate to `currentLocationLocation` relay") {
+                    it("triggers the coordinate to `currentLocation` relay") {
                         
                         let locationManagerStub = LocationManagerStub()
                         let didChangeAuthorization = PublishRelay<(LocationManagerType.AuthorizationEvent)>()

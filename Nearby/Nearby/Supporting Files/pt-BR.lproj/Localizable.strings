@@ -14,3 +14,9 @@
 "request_address_denied_message" = "Para utilizar a localização atual, acesse os Ajustes e altere a permissão de localização de Nearby.";
 "request_address_denied_confirm" = "Ajustar";
 "request_address_denied_cancel" = "Cancelar";
+
+"error_message_title" = "Oops!";
+"error_message_no_connection" = "Sem conexão! Ative as redes móveis ou conecte-se a uma rede Wi-fi.";
+"error_message_bad_request" = "Tivemos um problema ao obter os dados. Tente novamente.";
+"error_message_generic" = "Houve um problema, mas já estamos resolvendo. Tente novamente mais tarde.";
+"error_message_confirm_button" = "Ok";

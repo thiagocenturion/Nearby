@@ -14,6 +14,13 @@ struct Coordinate: Codable {
     let latitude: Double
     let longitude: Double
     
+    // MARK: - CodingKeys
+    
+    private enum CodingKeys: String, CodingKey {
+        case latitude = "lat"
+        case longitude = "lng"
+    }
+    
     // MARK: - Initialization
     
     init(latitude: Double, longitude: Double) {

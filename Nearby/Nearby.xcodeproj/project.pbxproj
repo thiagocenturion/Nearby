@@ -35,6 +35,11 @@
 		4D5D20F82585A03600A0A453 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D20F72585A03600A0A453 /* AppCoordinator.swift */; };
 		4D5D210D2585A35600A0A453 /* PlaceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5D210C2585A35600A0A453 /* PlaceDetail.swift */; };
 		4D658B91258A4AFA00E0CCD2 /* LocationManagerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D658B90258A4AFA00E0CCD2 /* LocationManagerStub.swift */; };
+		4D85A5DD259213D200587472 /* PlacesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D85A5DC259213D200587472 /* PlacesViewModel.swift */; };
+		4D85A5E225922DFA00587472 /* PlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D85A5E125922DFA00587472 /* PlaceViewModel.swift */; };
+		4D85A5EE2592480600587472 /* PlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D85A5EC2592480600587472 /* PlacesViewController.swift */; };
+		4D85A5EF2592480600587472 /* PlacesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D85A5ED2592480600587472 /* PlacesViewController.xib */; };
+		4D85A5FB25924A2F00587472 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D85A5FA25924A2F00587472 /* UIViewController+Rx.swift */; };
 		4D99E50B258B8ED500D632E0 /* RequestAddressCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D99E50A258B8ED500D632E0 /* RequestAddressCoordinatorTests.swift */; };
 		4D99E516258B911400D632E0 /* UIViewControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D99E515258B911400D632E0 /* UIViewControllerType.swift */; };
 		4D99E51A258B918200D632E0 /* UIViewControllerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D99E519258B918200D632E0 /* UIViewControllerStub.swift */; };
@@ -124,6 +129,11 @@
 		4D5D20F72585A03600A0A453 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		4D5D210C2585A35600A0A453 /* PlaceDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetail.swift; sourceTree = "<group>"; };
 		4D658B90258A4AFA00E0CCD2 /* LocationManagerStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerStub.swift; sourceTree = "<group>"; };
+		4D85A5DC259213D200587472 /* PlacesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewModel.swift; sourceTree = "<group>"; };
+		4D85A5E125922DFA00587472 /* PlaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceViewModel.swift; sourceTree = "<group>"; };
+		4D85A5EC2592480600587472 /* PlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewController.swift; sourceTree = "<group>"; };
+		4D85A5ED2592480600587472 /* PlacesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlacesViewController.xib; sourceTree = "<group>"; };
+		4D85A5FA25924A2F00587472 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		4D99E50A258B8ED500D632E0 /* RequestAddressCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAddressCoordinatorTests.swift; sourceTree = "<group>"; };
 		4D99E515258B911400D632E0 /* UIViewControllerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerType.swift; sourceTree = "<group>"; };
 		4D99E519258B918200D632E0 /* UIViewControllerStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerStub.swift; sourceTree = "<group>"; };
@@ -184,6 +194,8 @@
 			isa = PBXGroup;
 			children = (
 				4D042AE1258D94C7007E0789 /* Coordinator */,
+				4D85A5DA2591AA4200587472 /* ViewModel */,
+				4D85A5DB2591AA4800587472 /* View */,
 			);
 			path = Places;
 			sourceTree = "<group>";
@@ -240,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				4DE8771925870A2300A52B08 /* UIViewController+Extension.swift */,
+				4D85A5FA25924A2F00587472 /* UIViewController+Rx.swift */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -452,6 +465,24 @@
 				4D5D210C2585A35600A0A453 /* PlaceDetail.swift */,
 			);
 			path = PlaceDetail;
+			sourceTree = "<group>";
+		};
+		4D85A5DA2591AA4200587472 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4D85A5DC259213D200587472 /* PlacesViewModel.swift */,
+				4D85A5E125922DFA00587472 /* PlaceViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4D85A5DB2591AA4800587472 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4D85A5EC2592480600587472 /* PlacesViewController.swift */,
+				4D85A5ED2592480600587472 /* PlacesViewController.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		4D99E509258B8EAD00D632E0 /* Coordinator */ = {
@@ -706,6 +737,7 @@
 			files = (
 				4D5D20B72585928C00A0A453 /* LaunchScreen.storyboard in Resources */,
 				4DE877332587130900A52B08 /* Localizable.strings in Resources */,
+				4D85A5EF2592480600587472 /* PlacesViewController.xib in Resources */,
 				4D5D20B42585928C00A0A453 /* Assets.xcassets in Resources */,
 				4D3004472585C7EE00782708 /* RequestAddressViewController.xib in Resources */,
 			);
@@ -748,6 +780,7 @@
 				4D99E516258B911400D632E0 /* UIViewControllerType.swift in Sources */,
 				4D5D210D2585A35600A0A453 /* PlaceDetail.swift in Sources */,
 				4D5635C82590CA140094C5A7 /* Reachability.swift in Sources */,
+				4D85A5E225922DFA00587472 /* PlaceViewModel.swift in Sources */,
 				4D5635C22590C9B10094C5A7 /* Endpoint.swift in Sources */,
 				4D5D20F225859FAD00A0A453 /* BaseCoordinator.swift in Sources */,
 				4DC6E45A258A424C003253B1 /* LocationManagerType.swift in Sources */,
@@ -765,9 +798,12 @@
 				4DE8775C258799F800A52B08 /* RxEventTypealias.swift in Sources */,
 				4D99E51F258B927800D632E0 /* UINavigationControllerType.swift in Sources */,
 				4D042B07258DA18A007E0789 /* URLSession+Rx.swift in Sources */,
+				4D85A5FB25924A2F00587472 /* UIViewController+Rx.swift in Sources */,
 				4D30044C2585C81B00782708 /* RequestAddressViewModel.swift in Sources */,
 				4D5D20AD2585928B00A0A453 /* SceneDelegate.swift in Sources */,
 				4DE8775B258799F800A52B08 /* RxCLLocationManagerDelegateProxy.swift in Sources */,
+				4D85A5EE2592480600587472 /* PlacesViewController.swift in Sources */,
+				4D85A5DD259213D200587472 /* PlacesViewModel.swift in Sources */,
 				4D3004462585C7EE00782708 /* RequestAddressViewController.swift in Sources */,
 				4DE8775D258799F800A52B08 /* RxSelectors.swift in Sources */,
 			);

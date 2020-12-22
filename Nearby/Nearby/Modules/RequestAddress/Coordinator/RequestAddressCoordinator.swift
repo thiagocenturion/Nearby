@@ -13,7 +13,6 @@ import CoreLocation
 final class RequestAddressCoordinator: BaseCoordinator<Void> {
     
     // MARK: - Override methods
-    
     override func start() -> Observable<Void> {
         let viewModel = RequestAddressViewModel(
             title: "request_address_title".localized,
@@ -27,7 +26,7 @@ final class RequestAddressCoordinator: BaseCoordinator<Void> {
             .bind(to: registerAddressCoordinatorBinder)
             .disposed(by: disposeBag)
         
-        viewModel.currentLocationLocation
+        viewModel.currentLocation
             .bind(to: placesCoordinatorBinder)
             .disposed(by: disposeBag)
         
@@ -36,7 +35,6 @@ final class RequestAddressCoordinator: BaseCoordinator<Void> {
             .disposed(by: disposeBag)
         
         let viewController = RequestAddressViewController(viewModel: viewModel)
-        
         navigationController.pushViewController(viewController, animated: true)
         
         return Observable.never()
@@ -44,7 +42,6 @@ final class RequestAddressCoordinator: BaseCoordinator<Void> {
 }
 
 // MARK: - Coordination
-
 extension RequestAddressCoordinator {
     
     private var registerAddressCoordinatorBinder: Binder<Void> {
@@ -55,9 +52,9 @@ extension RequestAddressCoordinator {
     }
     
     private var placesCoordinatorBinder: Binder<Coordinate> {
-        return Binder(self) { target, location in
+        return Binder(self) { target, coordinate in
             
-            let coordinator = PlacesCoordinator(navigationController: target.navigationController)
+            let coordinator = PlacesCoordinator(coordinate: coordinate, navigationController: target.navigationController)
             target.coordinate(to: coordinator)
                 .subscribe()
                 .disposed(by: target.disposeBag)

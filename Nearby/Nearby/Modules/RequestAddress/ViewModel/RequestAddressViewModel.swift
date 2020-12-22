@@ -12,8 +12,8 @@ import CoreLocation
 import UIKit
 
 final class RequestAddressViewModel {
-    // MARK: - Properties
     
+    // MARK: - Properties
     let title: String
     let description: String
     let currentLocationText: String
@@ -23,14 +23,12 @@ final class RequestAddressViewModel {
     private let disposeBag = DisposeBag()
     
     // MARK: - Actions
-    
     let willUseCurrentLocation = PublishRelay<Void>()
     let willRegisterAddress = PublishRelay<Void>()
-    let currentLocationLocation = PublishRelay<Coordinate>()
+    let currentLocation = PublishRelay<Coordinate>()
     let alert = PublishRelay<AlertViewModel>()
     
     // MARK: - Initialization
-    
     init(title: String,
          description: String,
          currentLocationText: String,
@@ -47,7 +45,6 @@ final class RequestAddressViewModel {
 }
 
 // MARK: - Binding
-
 extension RequestAddressViewModel {
     
     private func bind() {
@@ -79,7 +76,7 @@ extension RequestAddressViewModel {
     private var authorizedBinder: Binder<LocationManagerType> {
         return Binder(self) { target, locationManager in
             if let coordinate = locationManager.coordinate {
-                target.currentLocationLocation.accept(
+                target.currentLocation.accept(
                     .init(
                         latitude: coordinate.latitude,
                         longitude: coordinate.longitude
@@ -123,7 +120,6 @@ extension RequestAddressViewModel {
 #if UNIT_TEST
 
 // MARK: - Equatable
-
 extension RequestAddressViewModel: Equatable {
     
     static func == (lhs: RequestAddressViewModel, rhs: RequestAddressViewModel) -> Bool {
@@ -136,7 +132,6 @@ extension RequestAddressViewModel: Equatable {
 }
 
 // MARK: - Mock
-
 extension RequestAddressViewModel {
     
     static func mock(
