@@ -13,7 +13,7 @@ final class ActivityIndicatorViewController: UIViewController {
     
     override func loadView() {
         view = UIView()
-        view.backgroundColor = UIColor(white: 0, alpha: 0.7)
+        view.backgroundColor = UIColor(white: 0, alpha: 0.3)
         
         loading.translatesAutoresizingMaskIntoConstraints = false
         loading.startAnimating()

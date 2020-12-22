@@ -18,6 +18,9 @@ final class PlacesCoordinator: BaseCoordinator<Void> {
     // MARK: - Override methods
     override func start() -> Observable<Void> {
         let viewModel = PlacesViewModel(
+            restaurantText: "places_restaurant".localized,
+            barText: "places_bar".localized,
+            cafeText: "places_cafe".localized,
             placeServices: PlaceServices(apiClient: APIClient.shared),
             isLoading: true,
             places: [],

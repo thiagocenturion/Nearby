@@ -56,6 +56,12 @@
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <color key="tintColor" red="0.36743509769999999" green="0.3940968513" blue="0.4978177547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="USAR LOCALIZAÇÃO ATUAL"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="25"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fvu-3p-Tn9">
                             <rect key="frame" x="0.0" y="70" width="374" height="50"/>
@@ -89,7 +95,7 @@
             <color red="0.0" green="0.83600002527236938" blue="0.89999997615814209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="SecondGrayColor">
-            <color red="0.41054463390000001" green="0.43707257510000003" blue="0.54908269639999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.41100001335144043" green="0.43700000643730164" blue="0.54900002479553223" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

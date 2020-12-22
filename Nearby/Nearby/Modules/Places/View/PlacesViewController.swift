@@ -11,8 +11,13 @@ import RxSwift
 final class PlacesViewController: UIViewController {
     
     // MARK: - Outlets
+    @IBOutlet private weak var restaurantSwitch: UISwitch!
+    @IBOutlet private weak var barSwitch: UISwitch!
+    @IBOutlet private weak var cafeSwitch: UISwitch!
+    @IBOutlet private weak var restaurantLabel: UILabel!
+    @IBOutlet private weak var barLabel: UILabel!
+    @IBOutlet private weak var cafeLabel: UILabel!
     
-
     // MARK: - Properties
     let viewModel: PlacesViewModel
     private let disposeBag = DisposeBag()
@@ -47,7 +52,14 @@ extension PlacesViewController {
 extension PlacesViewController {
     
     private func setup() {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        restaurantLabel.text = viewModel.restaurantText
+        barLabel.text = viewModel.barText
+        cafeLabel.text = viewModel.cafeText
         
+        restaurantSwitch.isOn = viewModel.selectedTypes.value.contains(.restaurant)
+        barSwitch.isOn = viewModel.selectedTypes.value.contains(.bar)
+        cafeSwitch.isOn = viewModel.selectedTypes.value.contains(.cafe)
     }
     
     private func bind() {
@@ -62,5 +74,25 @@ extension PlacesViewController {
                 isLoading ? self?.showLoading() : self?.hideLoading()
             })
             .disposed(by: disposeBag)
+        
+        let restaurantValueChanged = restaurantSwitch.rx.controlEvent(.valueChanged).withLatestFrom(restaurantSwitch.rx.value).share()
+        let barValueChanged = barSwitch.rx.controlEvent(.valueChanged).withLatestFrom(barSwitch.rx.value).share()
+        let cafeValueChanged = cafeSwitch.rx.controlEvent(.valueChanged).withLatestFrom(cafeSwitch.rx.value).share()
+        
+        Observable.merge(
+            restaurantValueChanged.filter { $0 }.map { _ in Place.PlaceType.restaurant },
+            barValueChanged.filter { $0 }.map { _ in Place.PlaceType.bar },
+            cafeValueChanged.filter { $0 }.map { _ in Place.PlaceType.cafe }
+        )
+        .bind(to: viewModel.appendSelectedType)
+        .disposed(by: disposeBag)
+        
+        Observable.merge(
+            restaurantValueChanged.filter { !$0 }.map { _ in Place.PlaceType.restaurant },
+            barValueChanged.filter { !$0 }.map { _ in Place.PlaceType.bar },
+            cafeValueChanged.filter { !$0 }.map { _ in Place.PlaceType.cafe }
+        )
+        .bind(to: viewModel.removeSelectedType)
+        .disposed(by: disposeBag)
     }
 }

@@ -15,6 +15,10 @@
 "request_address_denied_confirm" = "Ajustes";
 "request_address_denied_cancel" = "Cancelar";
 
+"places_restaurant" = "Restaurante";
+"places_bar" = "Bar";
+"places_cafe" = "Cafetaria";
+
 "error_message_title" = "Oops!";
 "error_message_no_connection" = "Sem conexão! Ative as redes móveis ou conecte-se a uma rede Wi-fi.";
 "error_message_bad_request" = "Tivemos um problema ao obter os dados. Tente novamente.";

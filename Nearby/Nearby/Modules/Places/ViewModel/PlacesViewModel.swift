@@ -12,6 +12,9 @@ import RxSwift
 final class PlacesViewModel {
     
     // MARK: - Properties
+    let restaurantText: String
+    let barText: String
+    let cafeText: String
     let placeServices: PlaceServicesType
     
     private let disposeBag = DisposeBag()
@@ -20,7 +23,10 @@ final class PlacesViewModel {
     let isLoading: BehaviorRelay<Bool>
     let coordinate: BehaviorRelay<Coordinate>
     let radius: BehaviorRelay<Int>
+    
     let selectedTypes: BehaviorRelay<[Place.PlaceType]>
+    let removeSelectedType = PublishRelay<Place.PlaceType>()
+    let appendSelectedType = PublishRelay<Place.PlaceType>()
     
     let viewDidAppear = PublishRelay<Void>()
     let fetchPlaces = PublishRelay<Void>()
@@ -32,13 +38,19 @@ final class PlacesViewModel {
     let places: BehaviorRelay<[PlaceViewModel]>
     
     // MARK: - Initialization
-    init(placeServices: PlaceServicesType,
+    init(restaurantText: String,
+         barText: String,
+         cafeText: String,
+         placeServices: PlaceServicesType,
          isLoading: Bool,
          places: [PlaceViewModel],
          coordinate: Coordinate,
          radius: Int,
          selectedTypes: [Place.PlaceType]) {
 
+        self.restaurantText = restaurantText
+        self.barText = barText
+        self.cafeText = cafeText
         self.placeServices = placeServices
         self.isLoading = BehaviorRelay(value: isLoading)
         self.places = BehaviorRelay(value: places)
@@ -58,17 +70,33 @@ extension PlacesViewModel {
             .bind(to: fetchPlacesBinder)
             .disposed(by: disposeBag)
         
-        viewDidAppear
-            .bind(to: fetchPlaces)
-            .disposed(by: disposeBag)
-        
         Observable.merge(
+            viewDidAppear.asObservable(),
             coordinate.skip(1).map { _ in () }.asObservable(),
             radius.skip(1).map { _ in () }.asObservable(),
             selectedTypes.skip(1).map { _ in () }.asObservable()
         )
         .bind(to: fetchPlaces)
         .disposed(by: disposeBag)
+        
+        removeSelectedType
+            .compactMap { [weak self] type in
+                var selectedTypes = self?.selectedTypes.value
+                _ = selectedTypes?.removeAll(where: { $0 == type })
+                return selectedTypes
+            }
+            .bind(to: selectedTypes)
+            .disposed(by: disposeBag)
+        
+        appendSelectedType
+            .compactMap { [weak self] type in
+                var selectedTypes = self?.selectedTypes.value
+                guard selectedTypes?.contains(type) == false else { return nil }
+                selectedTypes?.append(type)
+                return selectedTypes
+            }
+            .bind(to: selectedTypes)
+            .disposed(by: disposeBag)
     }
     
     private var fetchPlacesBinder: Binder<Void> {
