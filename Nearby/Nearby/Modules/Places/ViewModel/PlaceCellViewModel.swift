@@ -58,12 +58,15 @@ extension PlaceCellViewModel {
 #if UNIT_TEST
 
 // MARK: - Mock
-//extension PlaceCellViewModel {
-//
-//    public static func mock(example: String) -> PlaceCellViewModel {
-//        return PlaceCellViewModel(example: example)
-//    }
-//}
+extension PlaceCellViewModel {
+
+    public static func mock(
+        place: Place = .mock(),
+        measurementFormatter: MeasurementFormatter = .init()) -> PlaceCellViewModel {
+        
+        return PlaceCellViewModel(place: place, measurementFormatter: measurementFormatter)
+    }
+}
 
 // MARK: - Equatable
 extension PlaceCellViewModel: Equatable {

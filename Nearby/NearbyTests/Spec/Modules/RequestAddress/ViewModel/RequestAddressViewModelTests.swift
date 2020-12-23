@@ -62,7 +62,7 @@ final class RequestAddressViewModelTests: QuickSpec {
                             let expectedCoordinate = Coordinate.mock()
                             locationManagerStub.setCoordinate = expectedCoordinate
                             
-                            viewModel.currentLocationLocation
+                            viewModel.currentLocation
                                 .subscribe(onNext: { coordinate = $0 })
                                 .disposed(by: self.disposeBag)
                             
@@ -143,7 +143,7 @@ final class RequestAddressViewModelTests: QuickSpec {
                         let expectedCoordinate = Coordinate.mock()
                         locationManagerStub.setCoordinate = expectedCoordinate
                         
-                        viewModel.currentLocationLocation
+                        viewModel.currentLocation
                             .subscribe(onNext: { coordinate = $0 })
                             .disposed(by: self.disposeBag)
                         

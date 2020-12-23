@@ -12,8 +12,7 @@ import RxCocoa
 
 final class UINavigationControllerStub: UINavigationControllerType {
 
-    // MARK: - Properties
-    
+    // MARK: - Stub
     var presentCalls: [PresentCall] = []
     var dismissCalls: [DismissCall] = []
     var pushCalls: [PushCall] = []

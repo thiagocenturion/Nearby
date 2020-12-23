@@ -86,7 +86,7 @@ final class PlaceServices: PlaceServicesType {
 
 extension PlaceServices {
 
-    static func mock(apiClient: APIClientType) -> PlaceServices {
+    static func mock(apiClient: APIClientType = APIClient.shared) -> PlaceServices {
         return PlaceServices(apiClient: apiClient)
     }
 }

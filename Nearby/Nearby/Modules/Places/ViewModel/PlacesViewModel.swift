@@ -11,8 +11,6 @@ import RxSwift
 
 final class PlacesViewModel {
     
-    typealias Segmented = (type: Place.PlaceType, text: String)
-    
     // MARK: - Properties
     let segmenteds: [Segmented]
     let placeServices: PlaceServicesType
@@ -28,7 +26,6 @@ final class PlacesViewModel {
     
     let viewDidAppear = PublishRelay<Void>()
     let fetchPlaces = PublishRelay<Void>()
-    let selectedPlace = PublishRelay<PlaceCellViewModel>()
     
     let alert = PublishRelay<AlertViewModel>()
     
@@ -55,6 +52,15 @@ final class PlacesViewModel {
         self.selectedType = BehaviorRelay(value: selectedType)
         
         bind()
+    }
+}
+
+// MARK: - Inner type
+extension PlacesViewModel {
+    
+    struct Segmented {
+        let type: Place.PlaceType
+        let text: String
     }
 }
 
@@ -108,3 +114,42 @@ extension PlacesViewModel {
         }
     }
 }
+
+#if UNIT_TEST
+
+// MARK: - Equatable
+extension PlacesViewModel.Segmented: Equatable {
+    
+    static func == (lhs: PlacesViewModel.Segmented, rhs: PlacesViewModel.Segmented) -> Bool {
+        return lhs.type == rhs.type &&
+            lhs.text == rhs.text
+    }
+}
+
+// MARK: - Mock
+extension PlacesViewModel {
+    
+    static func mock(
+        segmenteds: [Segmented] = [.init(type: .restaurant, text: "places_restaurant".localized)],
+        placeServices: PlaceServicesType = PlaceServicesStub(responseType: .none),
+        locale: Locale = Locale.current,
+        isLoading: Bool = true,
+        places: [PlaceCellViewModel] = [],
+        coordinate: Coordinate = .mock(),
+        radius: Int = 2500,
+        selectedType: Place.PlaceType = .restaurant) -> PlacesViewModel {
+        
+        return .init(
+            segmenteds: segmenteds,
+            placeServices: placeServices,
+            locale: locale,
+            isLoading: isLoading,
+            places: places,
+            coordinate: coordinate,
+            radius: radius,
+            selectedType: selectedType
+        )
+    }
+}
+
+#endif

@@ -19,9 +19,9 @@ final class PlacesCoordinator: BaseCoordinator<Void> {
     override func start() -> Observable<Void> {
         let viewModel = PlacesViewModel(
             segmenteds: [
-                (type: .restaurant, text: "places_restaurant".localized),
-                (type: .cafe, text: "places_cafe".localized),
-                (type: .bar, text: "places_bar".localized)
+                .init(type: .restaurant, text: "places_restaurant".localized),
+                .init(type: .cafe, text: "places_cafe".localized),
+                .init(type: .bar, text: "places_bar".localized)
             ],
             placeServices: PlaceServices(apiClient: APIClient.shared),
             locale: Locale.current,
@@ -31,10 +31,6 @@ final class PlacesCoordinator: BaseCoordinator<Void> {
             radius: 2500,
             selectedType: .restaurant
         )
-        
-        viewModel.selectedPlace
-            .bind(to: placeDetailCoordinatorBinder)
-            .disposed(by: disposeBag)
         
         viewModel.alert
             .bind(to: navigationController.alert)
@@ -50,16 +46,5 @@ final class PlacesCoordinator: BaseCoordinator<Void> {
     init(coordinate: Coordinate, navigationController: UINavigationControllerType) {
         initialCoordinate = coordinate
         super.init(navigationController: navigationController)
-    }
-}
-
-// MARK: - Coordination
-extension PlacesCoordinator {
-    
-    private var placeDetailCoordinatorBinder: Binder<PlaceCellViewModel> {
-        return Binder(self) { target, placeViewModel in
-            // TODO: push register address coordinator
-            target.navigationController.pushViewController(UIViewController(), animated: true)
-        }
     }
 }
