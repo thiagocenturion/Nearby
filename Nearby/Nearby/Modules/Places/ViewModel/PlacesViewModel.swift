@@ -11,11 +11,12 @@ import RxSwift
 
 final class PlacesViewModel {
     
+    typealias Segmented = (type: Place.PlaceType, text: String)
+    
     // MARK: - Properties
-    let restaurantText: String
-    let barText: String
-    let cafeText: String
+    let segmenteds: [Segmented]
     let placeServices: PlaceServicesType
+    let locale: Locale
     
     private let disposeBag = DisposeBag()
     
@@ -23,40 +24,35 @@ final class PlacesViewModel {
     let isLoading: BehaviorRelay<Bool>
     let coordinate: BehaviorRelay<Coordinate>
     let radius: BehaviorRelay<Int>
-    
-    let selectedTypes: BehaviorRelay<[Place.PlaceType]>
-    let removeSelectedType = PublishRelay<Place.PlaceType>()
-    let appendSelectedType = PublishRelay<Place.PlaceType>()
+    let selectedType: BehaviorRelay<Place.PlaceType>
     
     let viewDidAppear = PublishRelay<Void>()
     let fetchPlaces = PublishRelay<Void>()
-    let selectedPlace = PublishRelay<PlaceViewModel>()
+    let selectedPlace = PublishRelay<PlaceCellViewModel>()
     
     let alert = PublishRelay<AlertViewModel>()
     
     // MARK: - Table View Model and Data Source
-    let places: BehaviorRelay<[PlaceViewModel]>
+    let places: BehaviorRelay<[PlaceCellViewModel]>
     
     // MARK: - Initialization
-    init(restaurantText: String,
-         barText: String,
-         cafeText: String,
+    init(segmenteds: [Segmented],
          placeServices: PlaceServicesType,
+         locale: Locale,
          isLoading: Bool,
-         places: [PlaceViewModel],
+         places: [PlaceCellViewModel],
          coordinate: Coordinate,
          radius: Int,
-         selectedTypes: [Place.PlaceType]) {
+         selectedType: Place.PlaceType) {
 
-        self.restaurantText = restaurantText
-        self.barText = barText
-        self.cafeText = cafeText
+        self.segmenteds = segmenteds
         self.placeServices = placeServices
+        self.locale = locale
         self.isLoading = BehaviorRelay(value: isLoading)
         self.places = BehaviorRelay(value: places)
         self.coordinate = BehaviorRelay(value: coordinate)
         self.radius = BehaviorRelay(value: radius)
-        self.selectedTypes = BehaviorRelay(value: selectedTypes)
+        self.selectedType = BehaviorRelay(value: selectedType)
         
         bind()
     }
@@ -74,43 +70,26 @@ extension PlacesViewModel {
             viewDidAppear.asObservable(),
             coordinate.skip(1).map { _ in () }.asObservable(),
             radius.skip(1).map { _ in () }.asObservable(),
-            selectedTypes.skip(1).map { _ in () }.asObservable()
+            selectedType.skip(1).map { _ in () }.asObservable()
         )
         .bind(to: fetchPlaces)
         .disposed(by: disposeBag)
-        
-        removeSelectedType
-            .compactMap { [weak self] type in
-                var selectedTypes = self?.selectedTypes.value
-                _ = selectedTypes?.removeAll(where: { $0 == type })
-                return selectedTypes
-            }
-            .bind(to: selectedTypes)
-            .disposed(by: disposeBag)
-        
-        appendSelectedType
-            .compactMap { [weak self] type in
-                var selectedTypes = self?.selectedTypes.value
-                guard selectedTypes?.contains(type) == false else { return nil }
-                selectedTypes?.append(type)
-                return selectedTypes
-            }
-            .bind(to: selectedTypes)
-            .disposed(by: disposeBag)
     }
     
     private var fetchPlacesBinder: Binder<Void> {
         return Binder(self) { target, _ in
             target.placeServices.requestPlacesSearch(
-                location: target.coordinate.value,
+                coordinate: target.coordinate.value,
                 radius: target.radius.value,
-                types: target.selectedTypes.value
+                type: target.selectedType.value,
+                locale: target.locale
             )
             .do(onSubscribe: { target.isLoading.accept(true) })
             .do(onDispose: { target.isLoading.accept(false) })
             .subscribe(
                 onSuccess: { places in
-                    let placeViewModels = places.map { PlaceViewModel(place: $0) }
+                    let formatter = MeasurementFormatter.shortNaturalScaleFormatter(with: target.locale)
+                    let placeViewModels = places.map { PlaceCellViewModel(place: $0, measurementFormatter: formatter) }
                     target.places.accept(placeViewModels)
                 },
                 onError: { error in

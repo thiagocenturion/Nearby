@@ -17,7 +17,7 @@
 
 "places_restaurant" = "Restaurante";
 "places_bar" = "Bar";
-"places_cafe" = "Cafetaria";
+"places_cafe" = "Refeitório";
 
 "error_message_title" = "Oops!";
 "error_message_no_connection" = "Sem conexão! Ative as redes móveis ou conecte-se a uma rede Wi-fi.";

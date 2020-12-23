@@ -11,12 +11,8 @@ import RxSwift
 final class PlacesViewController: UIViewController {
     
     // MARK: - Outlets
-    @IBOutlet private weak var restaurantSwitch: UISwitch!
-    @IBOutlet private weak var barSwitch: UISwitch!
-    @IBOutlet private weak var cafeSwitch: UISwitch!
-    @IBOutlet private weak var restaurantLabel: UILabel!
-    @IBOutlet private weak var barLabel: UILabel!
-    @IBOutlet private weak var cafeLabel: UILabel!
+    @IBOutlet weak var typesSegmentedControl: UISegmentedControl!
+    @IBOutlet private weak var tableView: UITableView!
     
     // MARK: - Properties
     let viewModel: PlacesViewModel
@@ -53,13 +49,12 @@ extension PlacesViewController {
     
     private func setup() {
         navigationController?.setNavigationBarHidden(true, animated: true)
-        restaurantLabel.text = viewModel.restaurantText
-        barLabel.text = viewModel.barText
-        cafeLabel.text = viewModel.cafeText
         
-        restaurantSwitch.isOn = viewModel.selectedTypes.value.contains(.restaurant)
-        barSwitch.isOn = viewModel.selectedTypes.value.contains(.bar)
-        cafeSwitch.isOn = viewModel.selectedTypes.value.contains(.cafe)
+        let segmenteds = viewModel.segmenteds
+        typesSegmentedControl.replaceSegments(withTitles: segmenteds.map { $0.text })
+        typesSegmentedControl.selectedSegmentIndex = segmenteds.firstIndex { $0.type == viewModel.selectedType.value } ?? 0
+        
+        tableView.register(UINib(nibName: "PlaceTableViewCell", bundle: nil), forCellReuseIdentifier: "PlaceTableViewCell")
     }
     
     private func bind() {
@@ -75,24 +70,21 @@ extension PlacesViewController {
             })
             .disposed(by: disposeBag)
         
-        let restaurantValueChanged = restaurantSwitch.rx.controlEvent(.valueChanged).withLatestFrom(restaurantSwitch.rx.value).share()
-        let barValueChanged = barSwitch.rx.controlEvent(.valueChanged).withLatestFrom(barSwitch.rx.value).share()
-        let cafeValueChanged = cafeSwitch.rx.controlEvent(.valueChanged).withLatestFrom(cafeSwitch.rx.value).share()
+        typesSegmentedControl.rx.selectedSegmentIndex
+            .map { [viewModel] in viewModel.segmenteds[$0].type }
+            .bind(to: viewModel.selectedType)
+            .disposed(by: disposeBag)
         
-        Observable.merge(
-            restaurantValueChanged.filter { $0 }.map { _ in Place.PlaceType.restaurant },
-            barValueChanged.filter { $0 }.map { _ in Place.PlaceType.bar },
-            cafeValueChanged.filter { $0 }.map { _ in Place.PlaceType.cafe }
-        )
-        .bind(to: viewModel.appendSelectedType)
-        .disposed(by: disposeBag)
+        viewModel.places
+            .bind(to: tableView.rx.items(cellIdentifier: "PlaceTableViewCell", cellType: PlaceTableViewCell.self)) { _, cellViewModel, cell in
+                cell.configure(with: cellViewModel)
+            }
+            .disposed(by: disposeBag)
         
-        Observable.merge(
-            restaurantValueChanged.filter { !$0 }.map { _ in Place.PlaceType.restaurant },
-            barValueChanged.filter { !$0 }.map { _ in Place.PlaceType.bar },
-            cafeValueChanged.filter { !$0 }.map { _ in Place.PlaceType.cafe }
-        )
-        .bind(to: viewModel.removeSelectedType)
-        .disposed(by: disposeBag)
+        tableView.rx.itemSelected
+            .subscribe(onNext: { [tableView] indexPath in
+                tableView?.deselectRow(at: indexPath, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 }

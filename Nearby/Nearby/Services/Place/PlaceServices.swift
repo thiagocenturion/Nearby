@@ -8,15 +8,17 @@
 import Foundation
 import RxSwift
 import SwiftyJSON
+import CoreLocation
 
 protocol PlaceServicesType {
     
     var apiClient: APIClientType { get }
 
     func requestPlacesSearch(
-        location: Coordinate,
+        coordinate: Coordinate,
         radius: Int,
-        types: [Place.PlaceType]) -> Single<[Place]>
+        type: Place.PlaceType,
+        locale: Locale) -> Single<[Place]>
 }
 
 final class PlaceServices: PlaceServicesType {
@@ -34,18 +36,19 @@ final class PlaceServices: PlaceServicesType {
     // MARK: - PlaceWebServicesType
 
     func requestPlacesSearch(
-        location: Coordinate,
+        coordinate: Coordinate,
         radius: Int,
-        types: [Place.PlaceType]) -> Single<[Place]> {
+        type: Place.PlaceType,
+        locale: Locale) -> Single<[Place]> {
         
         let request = APIRequest(
             endpoint: Endpoint(
                 path: "nearbysearch/json",
                 queryItems: [
-                    URLQueryItem(name: "location", value: "\(location.latitude),\(location.longitude)"),
+                    URLQueryItem(name: "location", value: "\(coordinate.latitude),\(coordinate.longitude)"),
                     URLQueryItem(name: "radius", value: "\(radius)"),
-                    URLQueryItem(name: "types", value: types.map { $0.rawValue }.joined(separator: ",")),
-                    URLQueryItem(name: "language", value: "pt-BR")
+                    URLQueryItem(name: "types", value: type.rawValue),
+                    URLQueryItem(name: "language", value: locale.identifier)
                 ]
             ),
             httpMethod: .get,
@@ -61,7 +64,18 @@ final class PlaceServices: PlaceServicesType {
                     return .error(NetworkingError.invalidDecode)
                 }
                 
-                return .just(places)
+                let currentLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+                
+                places.forEach {
+                    let location = CLLocation(latitude: $0.coordinate.latitude, longitude: $0.coordinate.longitude)
+                    $0.distance = currentLocation.distance(from: location)
+                }
+                
+                return .just(
+                    places
+                        .filter { !$0.types.isEmpty }
+                        .sorted(by: { ($0.distance ?? 0) < ($1.distance ?? 0) })
+                )
             }
     }
 }
