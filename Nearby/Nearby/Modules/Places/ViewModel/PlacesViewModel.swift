@@ -131,7 +131,7 @@ extension PlacesViewModel {
     
     static func mock(
         segmenteds: [Segmented] = [.init(type: .restaurant, text: "places_restaurant".localized)],
-        placeServices: PlaceServicesType = PlaceServicesStub(responseType: .none),
+        placeServices: PlaceServicesType = PlaceServicesStub(),
         locale: Locale = Locale.current,
         isLoading: Bool = true,
         places: [PlaceCellViewModel] = [],

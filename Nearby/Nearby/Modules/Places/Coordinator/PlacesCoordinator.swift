@@ -48,3 +48,19 @@ final class PlacesCoordinator: BaseCoordinator<Void> {
         super.init(navigationController: navigationController)
     }
 }
+
+
+#if UNIT_TEST
+
+// MARK: - Mock
+extension PlacesCoordinator {
+    
+    static func mock(
+        coordinate: Coordinate = .mock(),
+        navigationController: UINavigationControllerType = UINavigationControllerStub()) -> PlacesCoordinator {
+        
+        return .init(coordinate: coordinate, navigationController: navigationController)
+    }
+}
+
+#endif

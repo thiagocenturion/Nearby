@@ -22,32 +22,32 @@ final class PlacesCoordinatorTests: QuickSpec {
         describe("PlacesCoordinatorTests") {
             
             describe("init") {
-                
+
                 it("initialize with correct parameters") {
-                    
+
                     let navigationControllerStub = UINavigationControllerStub()
                     let coordinate = Coordinate.mock()
                     let coordinator = PlacesCoordinator(coordinate: coordinate, navigationController: navigationControllerStub)
-                    
+
                     expect(coordinator.initialCoordinate) == coordinate
                     expect(coordinator.navigationController) === navigationControllerStub
                 }
             } // init
 
             describe("start") {
-                
+
                 it("pushes the correctly view controller") {
-                    
+
                     let navigationControllerStub = UINavigationControllerStub()
                     let coordinate = Coordinate.mock()
                     let coordinator = PlacesCoordinator(coordinate: coordinate, navigationController: navigationControllerStub)
-                    
+
                     expect(navigationControllerStub.pushCalls.isEmpty) == true
-                    
+
                     _ = coordinator.start()
-                    
+
                     expect(navigationControllerStub.pushCalls.count) == 1
-                    
+
                     let pushCall = navigationControllerStub.pushCalls[0]
                     expect(pushCall.viewController is PlacesViewController) == true
                     expect(pushCall.animated) == true
@@ -61,7 +61,7 @@ final class PlacesCoordinatorTests: QuickSpec {
                     it("triggers the correctly alert to navigationController") {
                         
                         let navigationControllerStub = UINavigationControllerStub()
-                        let coordinator = RequestAddressCoordinator(navigationController: navigationControllerStub)
+                        let coordinator = PlacesCoordinator.mock(navigationController: navigationControllerStub)
                         let expectedAlertViewModel = AlertViewModel.mock()
                         
                         _ = coordinator.start()

@@ -61,3 +61,17 @@ extension RequestAddressCoordinator {
         }
     }
 }
+
+#if UNIT_TEST
+
+// MARK: - Mock
+extension RequestAddressCoordinator {
+    
+    static func mock(
+        navigationController: UINavigationControllerType = UINavigationControllerStub()) -> RequestAddressCoordinator {
+        
+        return .init(navigationController: navigationController)
+    }
+}
+
+#endif

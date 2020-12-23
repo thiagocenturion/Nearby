@@ -16,21 +16,7 @@ final class PlaceServicesStub: PlaceServicesType {
 
     // MARK: - Stub
     var requestPlacesSearchCalls: [RequestPlacesSearchCall] = []
-    var requestPlacesSearchReturn: [Place] = []
-    
-    // MARK: - Spy
-    enum ResponseType {
-        case none
-        case success
-        case error(NetworkingError)
-    }
-    
-    private let responseType: ResponseType
-    
-    // MARK: - Initialization
-    init(responseType: ResponseType) {
-        self.responseType = responseType
-    }
+    var requestPlacesSearchResponse: Single<[Place]> = .just(Array(repeating: .mock(), count: 10))
 
     // MARK: - PlaceServicesType
     var apiClient: APIClientType = APIClient(session: URLSession.shared)
@@ -48,14 +34,7 @@ final class PlaceServicesStub: PlaceServicesType {
             locale: locale
         ))
         
-        switch responseType {
-        case .none:
-            return .never()
-        case .success:
-            return .just(requestPlacesSearchReturn)
-        case .error(let error):
-            return .error(error)
-        }
+        return requestPlacesSearchResponse
     }
 }
 

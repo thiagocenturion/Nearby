@@ -61,7 +61,7 @@ final class PlacesViewModelTests: QuickSpec {
                 
                 it("calls services correctly") {
                     
-                    let placeServicesStub = PlaceServicesStub(responseType: .none)
+                    let placeServicesStub = PlaceServicesStub()
                     let coordinate = Coordinate.mock()
                     let radius = 2500
                     let selectedType = Place.PlaceType.restaurant
@@ -85,6 +85,58 @@ final class PlacesViewModelTests: QuickSpec {
                     expect(call.radius) == radius
                     expect(call.type) == selectedType
                     expect(call.locale) == locale
+                }
+                
+                context("success") {
+                    
+                    it("returns the correct response") {
+                        
+                        let placeServicesStub = PlaceServicesStub()
+                        let places: [Place] = [.mock()]
+                        placeServicesStub.requestPlacesSearchResponse = .just(places)
+                        let locale = Locale.current
+                        let viewModel = PlacesViewModel.mock(placeServices: placeServicesStub, locale: locale)
+                        
+                        let formatter = MeasurementFormatter.shortNaturalScaleFormatter(with: locale)
+                        let expectedPlaceViewModels = places.map { PlaceCellViewModel(place: $0, measurementFormatter: formatter) }
+                        
+                        var placeViewModels: [PlaceCellViewModel] = []
+                        viewModel.places
+                            .subscribe(onNext: { placeViewModels = $0 })
+                            .disposed(by: self.disposeBag)
+                        
+                        expect(placeViewModels).to(beEmpty())
+                        viewModel.fetchPlaces.accept(())
+                        expect(placeViewModels) == expectedPlaceViewModels
+                    }
+                }
+                
+                context("error") {
+                    
+                    it("returns the expected error") {
+                        
+                        let networkingError = NetworkingError.unknown
+                        let placeServicesStub = PlaceServicesStub()
+                        placeServicesStub.requestPlacesSearchResponse = .error(networkingError)
+                        let viewModel = PlacesViewModel.mock(placeServices: placeServicesStub)
+                        
+                        let expectedAlertViewModel = AlertViewModel(
+                            title: "error_message_title".localized,
+                            message: networkingError.rawValue,
+                            preferredStyle: .alert,
+                            confirmActionViewModel: .init(title: "error_message_confirm_button".localized),
+                            cancelActionViewModel: .init(title: "request_address_denied_cancel".localized)
+                        )
+                        
+                        var alertViewModel: AlertViewModel?
+                        viewModel.alert
+                            .subscribe(onNext: { alertViewModel = $0 })
+                            .disposed(by: self.disposeBag)
+                        
+                        expect(alertViewModel).to(beNil())
+                        viewModel.fetchPlaces.accept(())
+                        expect(alertViewModel) == expectedAlertViewModel
+                    }
                 }
             } // fetchPlaces
         }
