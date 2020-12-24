@@ -18,13 +18,8 @@ final class RequestAddressCoordinator: BaseCoordinator<Void> {
             title: "request_address_title".localized,
             description: "request_address_description".localized,
             currentLocationText: "request_address_current_location".localized,
-            registerAddressText: "request_address_register_address".localized,
             locationManager: CLLocationManager()
         )
-        
-        viewModel.willRegisterAddress
-            .bind(to: registerAddressCoordinatorBinder)
-            .disposed(by: disposeBag)
         
         viewModel.currentLocation
             .bind(to: placesCoordinatorBinder)
@@ -43,13 +38,6 @@ final class RequestAddressCoordinator: BaseCoordinator<Void> {
 
 // MARK: - Coordination
 extension RequestAddressCoordinator {
-    
-    private var registerAddressCoordinatorBinder: Binder<Void> {
-        return Binder(self) { target, _ in
-            // TODO: push register address coordinator
-            target.navigationController.pushViewController(UIViewController(), animated: true)
-        }
-    }
     
     private var placesCoordinatorBinder: Binder<Coordinate> {
         return Binder(self) { target, coordinate in

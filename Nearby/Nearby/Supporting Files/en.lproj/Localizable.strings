@@ -9,7 +9,6 @@
 "request_address_title" = "Location";
 "request_address_description" = "Where are you?";
 "request_address_current_location" = "USE CURRENT LOCATION";
-"request_address_register_address" = "REGISTER ADDRESS";
 "request_address_denied_title" = "Location not alowwed";
 "request_address_denied_message" = "To use the current location, go to Settings and change the Nearby location permission.";
 "request_address_denied_confirm" = "Settings";

@@ -17,14 +17,12 @@ final class RequestAddressViewModel {
     let title: String
     let description: String
     let currentLocationText: String
-    let registerAddressText: String
     let locationManager: LocationManagerType
     
     private let disposeBag = DisposeBag()
     
     // MARK: - Actions
     let willUseCurrentLocation = PublishRelay<Void>()
-    let willRegisterAddress = PublishRelay<Void>()
     let currentLocation = PublishRelay<Coordinate>()
     let alert = PublishRelay<AlertViewModel>()
     
@@ -32,12 +30,10 @@ final class RequestAddressViewModel {
     init(title: String,
          description: String,
          currentLocationText: String,
-         registerAddressText: String,
          locationManager: LocationManagerType) {
         self.title = title
         self.description = description
         self.currentLocationText = currentLocationText
-        self.registerAddressText = registerAddressText
         self.locationManager = locationManager
         
         bind()
@@ -126,7 +122,6 @@ extension RequestAddressViewModel: Equatable {
         return lhs.title == rhs.title &&
             lhs.description == rhs.description &&
             lhs.currentLocationText == rhs.currentLocationText &&
-            lhs.registerAddressText == rhs.registerAddressText &&
             lhs.locationManager === rhs.locationManager
     }
 }
@@ -138,14 +133,12 @@ extension RequestAddressViewModel {
         title: String = "Location",
         description: String = "Where are you?",
         currentLocationText: String = "USE CURRENT LOCATION",
-        registerAddressText: String = "REGISTER ADDRESS",
         locationManager: LocationManagerType = LocationManagerStub()) -> RequestAddressViewModel {
         
         return .init(
             title: title,
             description: description,
             currentLocationText: currentLocationText,
-            registerAddressText: registerAddressText,
             locationManager: locationManager
         )
     }

@@ -9,7 +9,6 @@
 "request_address_title" = "Localização";
 "request_address_description" = "Onde você está?";
 "request_address_current_location" = "USAR LOCALIZAÇÃO ATUAL";
-"request_address_register_address" = "CADASTRAR ENDEREÇO";
 "request_address_denied_title" = "Localização não permitida";
 "request_address_denied_message" = "Para utilizar a localização atual, acesse os Ajustes e altere a permissão de localização de Nearby.";
 "request_address_denied_confirm" = "Ajustar";
