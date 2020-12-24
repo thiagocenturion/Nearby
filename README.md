@@ -33,13 +33,13 @@ Nearby uses user's current location by `CoreLocation` and gets nearby places fro
 
 ## Screenshots
 #### Light mode
-[<img src="/Images/Screenshots/requestLight.png" align="left" width="300" hspace="5" vspace="10">](/Images/Screenshots/requestLight.png)
-[<img src="/Images/Screenshots/placesLight.png" align="center" width="300" hspace="5" vspace="10">](/Images/Screenshots/placesLight.png)
-[<img src="/Images/Screenshots/MapsLight.png" align="center" width="300" hspace="5" vspace="10">](/Images/Screenshots/MapsLight.png)
+[<img src="/Images/Screenshots/requestLight.png" align="left" width="250" hspace="0" vspace="10">](/Images/Screenshots/requestLight.png)
+[<img src="/Images/Screenshots/placesLight.png" align="center" width="250" hspace="0" vspace="10">](/Images/Screenshots/placesLight.png)
+[<img src="/Images/Screenshots/MapsLight.png" align="center" width="250" hspace="0" vspace="10">](/Images/Screenshots/MapsLight.png)
 #### Dark mode
-[<img src="/Images/Screenshots/requestDark.png" align="left" width="300" hspace="5" vspace="10">](/Images/Screenshots/requestDark.png)
-[<img src="/Images/Screenshots/placesDark.png" align="center" width="300" hspace="5" vspace="10">](/Images/Screenshots/placesDark.png)
-[<img src="/Images/Screenshots/MapsDark.png" align="center" width="300" hspace="5" vspace="10">](/Images/Screenshots/MapsDark.png)
+[<img src="/Images/Screenshots/requestDark.png" align="left" width="250" hspace="0" vspace="10">](/Images/Screenshots/requestDark.png)
+[<img src="/Images/Screenshots/placesDark.png" align="center" width="250" hspace="0" vspace="10">](/Images/Screenshots/placesDark.png)
+[<img src="/Images/Screenshots/MapsDark.png" align="center" width="250" hspace="0" vspace="10">](/Images/Screenshots/MapsDark.png)
 
 ## Meta
 
