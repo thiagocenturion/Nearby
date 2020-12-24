@@ -81,3 +81,19 @@ extension MapsActionSheetViewModel {
         return actionViewModel
     }
 }
+
+#if UNIT_TEST
+
+// MARK: - Mock
+extension MapsActionSheetViewModel {
+    
+    static func mock(coordinate: Coordinate = .mock(),
+                     application: UIApplication = .shared) -> MapsActionSheetViewModel {
+        return .init(
+            coordinate: coordinate,
+            application: application
+        )
+    }
+}
+
+#endif

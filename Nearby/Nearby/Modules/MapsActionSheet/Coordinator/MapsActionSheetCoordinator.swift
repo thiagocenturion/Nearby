@@ -37,3 +37,18 @@ final class MapsActionSheetCoordinator: BaseCoordinator<URL> {
         super.init(navigationController: navigationController)
     }
 }
+
+#if UNIT_TEST
+
+// MARK: - Mock
+extension MapsActionSheetCoordinator {
+    
+    static func mock(
+        coordinate: Coordinate = .mock(),
+        navigationController: UINavigationControllerType = UINavigationControllerStub()) -> MapsActionSheetCoordinator {
+        
+        return .init(coordinate: coordinate, navigationController: navigationController)
+    }
+}
+
+#endif

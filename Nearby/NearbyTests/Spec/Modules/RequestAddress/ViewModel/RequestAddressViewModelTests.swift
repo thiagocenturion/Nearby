@@ -144,7 +144,7 @@ final class RequestAddressViewModelTests: QuickSpec {
                                     .disposed(by: self.disposeBag)
                                 
                                 expect(wasOpenSettingsCalled) == false
-                                alertViewModel?.confirmActionViewModel?.tap.accept(())
+                                alertViewModel?.actionsViewModels.first?.tap.accept(())
                                 expect(wasOpenSettingsCalled) == true
                             }
                         }
