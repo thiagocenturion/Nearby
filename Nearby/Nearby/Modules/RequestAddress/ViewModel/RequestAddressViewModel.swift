@@ -12,34 +12,29 @@ import CoreLocation
 import UIKit
 
 final class RequestAddressViewModel {
-    // MARK: - Properties
     
+    // MARK: - Properties
     let title: String
     let description: String
     let currentLocationText: String
-    let registerAddressText: String
     let locationManager: LocationManagerType
     
     private let disposeBag = DisposeBag()
     
     // MARK: - Actions
-    
     let willUseCurrentLocation = PublishRelay<Void>()
-    let willRegisterAddress = PublishRelay<Void>()
-    let currentLocationLocation = PublishRelay<Coordinate>()
+    let openSettings = PublishRelay<Void>()
+    let currentLocation = PublishRelay<Coordinate>()
     let alert = PublishRelay<AlertViewModel>()
     
     // MARK: - Initialization
-    
     init(title: String,
          description: String,
          currentLocationText: String,
-         registerAddressText: String,
          locationManager: LocationManagerType) {
         self.title = title
         self.description = description
         self.currentLocationText = currentLocationText
-        self.registerAddressText = registerAddressText
         self.locationManager = locationManager
         
         bind()
@@ -47,7 +42,6 @@ final class RequestAddressViewModel {
 }
 
 // MARK: - Binding
-
 extension RequestAddressViewModel {
     
     private func bind() {
@@ -79,7 +73,7 @@ extension RequestAddressViewModel {
     private var authorizedBinder: Binder<LocationManagerType> {
         return Binder(self) { target, locationManager in
             if let coordinate = locationManager.coordinate {
-                target.currentLocationLocation.accept(
+                target.currentLocation.accept(
                     .init(
                         latitude: coordinate.latitude,
                         longitude: coordinate.longitude
@@ -106,13 +100,7 @@ extension RequestAddressViewModel {
             )
             
             alertViewModel.confirmActionViewModel?.tap
-                .subscribe(onNext: {
-                    UIApplication.shared.open(
-                        URL(string: UIApplication.openSettingsURLString)!,
-                        options: [:],
-                        completionHandler: nil
-                    )
-                })
+                .bind(to: target.openSettings)
                 .disposed(by: target.disposeBag)
             
             target.alert.accept(alertViewModel)
@@ -123,34 +111,29 @@ extension RequestAddressViewModel {
 #if UNIT_TEST
 
 // MARK: - Equatable
-
 extension RequestAddressViewModel: Equatable {
     
     static func == (lhs: RequestAddressViewModel, rhs: RequestAddressViewModel) -> Bool {
         return lhs.title == rhs.title &&
             lhs.description == rhs.description &&
             lhs.currentLocationText == rhs.currentLocationText &&
-            lhs.registerAddressText == rhs.registerAddressText &&
             lhs.locationManager === rhs.locationManager
     }
 }
 
 // MARK: - Mock
-
 extension RequestAddressViewModel {
     
     static func mock(
         title: String = "Location",
         description: String = "Where are you?",
         currentLocationText: String = "USE CURRENT LOCATION",
-        registerAddressText: String = "REGISTER ADDRESS",
         locationManager: LocationManagerType = LocationManagerStub()) -> RequestAddressViewModel {
         
         return .init(
             title: title,
             description: description,
             currentLocationText: currentLocationText,
-            registerAddressText: registerAddressText,
             locationManager: locationManager
         )
     }

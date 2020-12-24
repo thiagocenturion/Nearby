@@ -8,56 +8,75 @@
 import Foundation
 import RxSwift
 import SwiftyJSON
+import CoreLocation
 
 protocol PlaceServicesType {
+    
+    var apiClient: APIClientType { get }
 
     func requestPlacesSearch(
-        location: Coordinate,
+        coordinate: Coordinate,
         radius: Int,
-        types: [Place.PlaceType]) -> Single<[Place]>
+        type: Place.PlaceType,
+        locale: Locale) -> Single<[Place]>
 }
 
 final class PlaceServices: PlaceServicesType {
 
     // MARK: - Properties
 
-    let apiKey: String
-    let session: URLSession
+    let apiClient: APIClientType
 
     // MARK: - Initialization
 
-    init(apiKey: String, session: URLSession) {
-        self.apiKey = apiKey
-        self.session = session
+    init(apiClient: APIClientType) {
+        self.apiClient = apiClient
     }
 
     // MARK: - PlaceWebServicesType
 
     func requestPlacesSearch(
-        location: Coordinate,
+        coordinate: Coordinate,
         radius: Int,
-        types: [Place.PlaceType]) -> Single<[Place]> {
-    
-        let params: [String: Any] = [
-            "param": param
-        ]
-
-        return sessionManager.request(
-            endpoint: ClientEndpoint(.login),
-            httpMethod: .post(.init(
-                params: params,
-                encoding: .json,
-                encryption: .init(keyToEncrypt: "Data"),
-                shouldUseGZIP: true
-            ))
-        ).flatMap { json in
-            do {
-                let model = try JSONDecoder().decode(Model.self, from: json.rawData())
-                return .just(model)
-            } catch {
-                return .error(NeonServerError.invalidResponse)
+        type: Place.PlaceType,
+        locale: Locale) -> Single<[Place]> {
+        
+        let request = APIRequest(
+            endpoint: Endpoint(
+                path: "nearbysearch/json",
+                queryItems: [
+                    URLQueryItem(name: "location", value: "\(coordinate.latitude),\(coordinate.longitude)"),
+                    URLQueryItem(name: "radius", value: "\(radius)"),
+                    URLQueryItem(name: "types", value: type.rawValue),
+                    URLQueryItem(name: "language", value: locale.identifier)
+                ]
+            ),
+            httpMethod: .get,
+            timeout: 60.0
+        )
+        
+        return apiClient.request(with: request)
+            .flatMap { json in
+                guard
+                    let results = json["results"].array,
+                    let places = try? results.map({ try JSONDecoder().decode(Place.self, from: $0.rawData()) })
+                else {
+                    return .error(NetworkingError.invalidDecode)
+                }
+                
+                let currentLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+                
+                places.forEach {
+                    let location = CLLocation(latitude: $0.coordinate.latitude, longitude: $0.coordinate.longitude)
+                    $0.distance = currentLocation.distance(from: location)
+                }
+                
+                return .just(
+                    places
+                        .filter { !$0.types.isEmpty }
+                        .sorted(by: { ($0.distance ?? 0) < ($1.distance ?? 0) })
+                )
             }
-        }
     }
 }
 
@@ -67,14 +86,8 @@ final class PlaceServices: PlaceServicesType {
 
 extension PlaceServices {
 
-    static func mock(
-        apiKey: String = "BZsbOqPW...",
-        session: URLSession = .shared) -> PlaceServices {
-
-        return PlaceServices(
-            apiKey: apiKey,
-            session: session
-        )
+    static func mock(apiClient: APIClientType = APIClient.shared) -> PlaceServices {
+        return PlaceServices(apiClient: apiClient)
     }
 }
 

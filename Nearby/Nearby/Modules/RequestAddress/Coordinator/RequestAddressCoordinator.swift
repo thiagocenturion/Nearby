@@ -13,21 +13,15 @@ import CoreLocation
 final class RequestAddressCoordinator: BaseCoordinator<Void> {
     
     // MARK: - Override methods
-    
     override func start() -> Observable<Void> {
         let viewModel = RequestAddressViewModel(
             title: "request_address_title".localized,
             description: "request_address_description".localized,
             currentLocationText: "request_address_current_location".localized,
-            registerAddressText: "request_address_register_address".localized,
             locationManager: CLLocationManager()
         )
         
-        viewModel.willRegisterAddress
-            .bind(to: registerAddressCoordinatorBinder)
-            .disposed(by: disposeBag)
-        
-        viewModel.currentLocationLocation
+        viewModel.currentLocation
             .bind(to: placesCoordinatorBinder)
             .disposed(by: disposeBag)
         
@@ -35,8 +29,17 @@ final class RequestAddressCoordinator: BaseCoordinator<Void> {
             .bind(to: navigationController.alert)
             .disposed(by: disposeBag)
         
-        let viewController = RequestAddressViewController(viewModel: viewModel)
+        viewModel.openSettings
+            .subscribe(onNext: {
+                UIApplication.shared.open(
+                    URL(string: UIApplication.openSettingsURLString)!,
+                    options: [:],
+                    completionHandler: nil
+                )
+            })
+            .disposed(by: disposeBag)
         
+        let viewController = RequestAddressViewController(viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
         
         return Observable.never()
@@ -44,23 +47,29 @@ final class RequestAddressCoordinator: BaseCoordinator<Void> {
 }
 
 // MARK: - Coordination
-
 extension RequestAddressCoordinator {
     
-    private var registerAddressCoordinatorBinder: Binder<Void> {
-        return Binder(self) { target, _ in
-            // TODO: push register address coordinator
-            target.navigationController.pushViewController(UIViewController(), animated: true)
-        }
-    }
-    
     private var placesCoordinatorBinder: Binder<Coordinate> {
-        return Binder(self) { target, location in
+        return Binder(self) { target, coordinate in
             
-            let coordinator = PlacesCoordinator(navigationController: target.navigationController)
+            let coordinator = PlacesCoordinator(coordinate: coordinate, navigationController: target.navigationController)
             target.coordinate(to: coordinator)
                 .subscribe()
                 .disposed(by: target.disposeBag)
         }
     }
 }
+
+#if UNIT_TEST
+
+// MARK: - Mock
+extension RequestAddressCoordinator {
+    
+    static func mock(
+        navigationController: UINavigationControllerType = UINavigationControllerStub()) -> RequestAddressCoordinator {
+        
+        return .init(navigationController: navigationController)
+    }
+}
+
+#endif

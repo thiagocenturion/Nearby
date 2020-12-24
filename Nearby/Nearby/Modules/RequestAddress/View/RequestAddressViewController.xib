@@ -15,7 +15,6 @@
             <connections>
                 <outlet property="currentLocationButton" destination="MXa-Is-IDq" id="dAc-kx-6IJ"/>
                 <outlet property="descriptionLabel" destination="Znu-Fy-n7b" id="pmd-dK-A2f"/>
-                <outlet property="registerAddressButton" destination="Fvu-3p-Tn9" id="Wqk-7x-YCH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -45,7 +44,7 @@
                     </subviews>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="kNe-mB-xRU">
-                    <rect key="frame" x="20" y="732" width="374" height="120"/>
+                    <rect key="frame" x="20" y="792" width="374" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MXa-Is-IDq">
                             <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
@@ -54,18 +53,14 @@
                                 <constraint firstAttribute="height" constant="50" id="heT-mq-pHr"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <color key="tintColor" red="0.36743509769999999" green="0.3940968513" blue="0.4978177547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" systemColor="labelColor"/>
                             <state key="normal" title="USAR LOCALIZAÇÃO ATUAL"/>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fvu-3p-Tn9">
-                            <rect key="frame" x="0.0" y="70" width="374" height="50"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="50" id="igh-Lk-3zo"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                            <color key="tintColor" name="AccentColor"/>
-                            <state key="normal" title="CADASTRAR ENDEREÇO"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="25"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
                         </button>
                     </subviews>
                 </stackView>
@@ -77,7 +72,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="tTr-qB-ssb" secondAttribute="trailing" constant="20" id="qLT-Ml-lCD"/>
                 <constraint firstItem="kNe-mB-xRU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="qez-Eo-FZR"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="kNe-mB-xRU" secondAttribute="trailing" constant="20" id="tWp-qG-8Br"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="kNe-mB-xRU" secondAttribute="bottom" constant="10" id="uD0-go-LcI"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="kNe-mB-xRU" secondAttribute="bottom" constant="20" id="uD0-go-LcI"/>
                 <constraint firstItem="tTr-qB-ssb" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="wx0-cr-cZj"/>
             </constraints>
             <point key="canvasLocation" x="58" y="135"/>
@@ -89,8 +84,11 @@
             <color red="0.0" green="0.83600002527236938" blue="0.89999997615814209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="SecondGrayColor">
-            <color red="0.41054463390000001" green="0.43707257510000003" blue="0.54908269639999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.41100001335144043" green="0.43700000643730164" blue="0.54900002479553223" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

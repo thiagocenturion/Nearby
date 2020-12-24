@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17502"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlacesViewController" customModule="Nearby" customModuleProvider="target">
+            <connections>
+                <outlet property="tableView" destination="S9e-cb-1ql" id="0br-G9-1OX"/>
+                <outlet property="typesSegmentedControl" destination="Eoh-Ap-gyJ" id="mTl-Zg-Mb6"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ri-XK-Wq4" userLabel="Fake Navigation Bar">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="115"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RQx-mf-SHK">
+                            <rect key="frame" x="20" y="64" width="374" height="31"/>
+                            <subviews>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Eoh-Ap-gyJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="32"/>
+                                    <segments>
+                                        <segment title="Restaurant"/>
+                                        <segment title="Cafe"/>
+                                        <segment title="Bar"/>
+                                    </segments>
+                                    <color key="selectedSegmentTintColor" name="AccentColor"/>
+                                </segmentedControl>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="x9l-gv-oJb"/>
+                    <color key="backgroundColor" name="BackgroundSmoothColor"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="RQx-mf-SHK" secondAttribute="bottom" constant="20" id="3Kf-AE-m2i"/>
+                        <constraint firstItem="RQx-mf-SHK" firstAttribute="top" secondItem="x9l-gv-oJb" secondAttribute="top" constant="20" id="9KG-ps-R6n"/>
+                        <constraint firstItem="RQx-mf-SHK" firstAttribute="leading" secondItem="7Ri-XK-Wq4" secondAttribute="leading" constant="20" id="9hH-4m-H40"/>
+                        <constraint firstAttribute="trailing" secondItem="RQx-mf-SHK" secondAttribute="trailing" constant="20" id="z0V-ab-Cq6"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="S9e-cb-1ql">
+                    <rect key="frame" x="0.0" y="115" width="414" height="781"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="7Ri-XK-Wq4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="2s1-mV-Dcb"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7Ri-XK-Wq4" secondAttribute="trailing" id="H38-MF-3YW"/>
+                <constraint firstItem="S9e-cb-1ql" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="d2d-Qp-PQF"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="S9e-cb-1ql" secondAttribute="trailing" id="dW8-fs-isM"/>
+                <constraint firstItem="S9e-cb-1ql" firstAttribute="top" secondItem="7Ri-XK-Wq4" secondAttribute="bottom" id="pvB-ff-GO1"/>
+                <constraint firstAttribute="bottom" secondItem="S9e-cb-1ql" secondAttribute="bottom" id="yQt-pI-hf1"/>
+                <constraint firstItem="7Ri-XK-Wq4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ymt-sV-yqx"/>
+            </constraints>
+            <point key="canvasLocation" x="58" y="114"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.83600002527236938" blue="0.89999997615814209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="BackgroundSmoothColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
