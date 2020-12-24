@@ -112,7 +112,7 @@ extension Place {
         types: [PlaceType] = [.restaurant],
         vicinity: String = "Rua Sebastião da Silva, Itupeva",
         coordinate: Coordinate = .init(latitude: -23.1483946, longitude: -47.03470979999999),
-        rating: Double = 4.8,
+        rating: Double? = 4.8,
         distance: Double? = 300) -> Place {
         
         return Place(
