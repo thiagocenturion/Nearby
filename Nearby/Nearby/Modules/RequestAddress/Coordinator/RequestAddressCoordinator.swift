@@ -29,6 +29,16 @@ final class RequestAddressCoordinator: BaseCoordinator<Void> {
             .bind(to: navigationController.alert)
             .disposed(by: disposeBag)
         
+        viewModel.openSettings
+            .subscribe(onNext: {
+                UIApplication.shared.open(
+                    URL(string: UIApplication.openSettingsURLString)!,
+                    options: [:],
+                    completionHandler: nil
+                )
+            })
+            .disposed(by: disposeBag)
+        
         let viewController = RequestAddressViewController(viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
         

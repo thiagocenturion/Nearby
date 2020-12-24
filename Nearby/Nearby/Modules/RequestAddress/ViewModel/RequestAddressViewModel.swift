@@ -23,6 +23,7 @@ final class RequestAddressViewModel {
     
     // MARK: - Actions
     let willUseCurrentLocation = PublishRelay<Void>()
+    let openSettings = PublishRelay<Void>()
     let currentLocation = PublishRelay<Coordinate>()
     let alert = PublishRelay<AlertViewModel>()
     
@@ -99,13 +100,7 @@ extension RequestAddressViewModel {
             )
             
             alertViewModel.confirmActionViewModel?.tap
-                .subscribe(onNext: {
-                    UIApplication.shared.open(
-                        URL(string: UIApplication.openSettingsURLString)!,
-                        options: [:],
-                        completionHandler: nil
-                    )
-                })
+                .bind(to: target.openSettings)
                 .disposed(by: target.disposeBag)
             
             target.alert.accept(alertViewModel)

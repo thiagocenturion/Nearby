@@ -31,6 +31,7 @@ final class PlacesViewModel {
     
     // MARK: - Table View Model and Data Source
     let places: BehaviorRelay<[PlaceCellViewModel]>
+    let selectedPlace = PublishRelay<PlaceCellViewModel>()
     
     // MARK: - Initialization
     init(segmenteds: [Segmented],

@@ -36,6 +36,11 @@ final class PlacesCoordinator: BaseCoordinator<Void> {
             .bind(to: navigationController.alert)
             .disposed(by: disposeBag)
         
+        viewModel.selectedPlace
+            .map { $0.coordinate }
+            .bind(to: openMapsActionSheet)
+            .disposed(by: disposeBag)
+        
         let viewController = PlacesViewController(viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
         
@@ -46,6 +51,16 @@ final class PlacesCoordinator: BaseCoordinator<Void> {
     init(coordinate: Coordinate, navigationController: UINavigationControllerType) {
         initialCoordinate = coordinate
         super.init(navigationController: navigationController)
+    }
+}
+
+// MARK: - Binding
+extension PlacesCoordinator {
+    
+    var openMapsActionSheet: Binder<Coordinate> {
+        return Binder(self) { target, coordinate in
+            // TODO: Open maps action sheet
+        }
     }
 }
 

@@ -82,9 +82,9 @@ extension PlacesViewController {
             .disposed(by: disposeBag)
         
         tableView.rx.itemSelected
-            .subscribe(onNext: { [tableView] indexPath in
-                tableView?.deselectRow(at: indexPath, animated: true)
-            })
+            .do(onNext: { [tableView] indexPath in tableView?.deselectRow(at: indexPath , animated: true) })
+            .map { [viewModel] indexPath in viewModel.places.value[indexPath.row] }
+            .bind(to: viewModel.selectedPlace)
             .disposed(by: disposeBag)
     }
 }

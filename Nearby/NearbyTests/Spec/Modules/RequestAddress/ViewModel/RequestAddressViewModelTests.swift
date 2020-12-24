@@ -29,21 +29,18 @@ final class RequestAddressViewModelTests: QuickSpec {
                     let title = "Location"
                     let description = "Where are you?"
                     let currentLocationText = "USE CURRENT LOCATION"
-                    let registerAddressText = "REGISTER ADDRESS"
                     let locationManager = CLLocationManager()
 
                     let viewModel = RequestAddressViewModel(
                         title: title,
                         description: description,
                         currentLocationText: currentLocationText,
-                        registerAddressText: registerAddressText,
                         locationManager: locationManager
                     )
 
                     expect(viewModel.title) == title
                     expect(viewModel.description) == description
                     expect(viewModel.currentLocationText) == currentLocationText
-                    expect(viewModel.registerAddressText) == registerAddressText
                     expect(viewModel.locationManager) === locationManager
                 }
             } // init
@@ -123,6 +120,33 @@ final class RequestAddressViewModelTests: QuickSpec {
                             )
                             
                             expect(alertViewModel) == expectedAlertViewModel
+                        }
+                        
+                        context("confirmActionViewModel.tap") {
+                            
+                            it("binds to openSettings relay") {
+                                
+                                let locationManagerStub = LocationManagerStub()
+                                let viewModel = RequestAddressViewModel.mock(locationManager: locationManagerStub)
+                                var alertViewModel: AlertViewModel?
+                                
+                                viewModel.alert
+                                    .subscribe(onNext: { alertViewModel = $0 })
+                                    .disposed(by: self.disposeBag)
+                                
+                                locationManagerStub.setAuthorizationStatus = .denied
+                                viewModel.willUseCurrentLocation.accept(())
+                                
+                                var wasOpenSettingsCalled = false
+                                
+                                viewModel.openSettings
+                                    .subscribe(onNext: { wasOpenSettingsCalled = true })
+                                    .disposed(by: self.disposeBag)
+                                
+                                expect(wasOpenSettingsCalled) == false
+                                alertViewModel?.confirmActionViewModel?.tap.accept(())
+                                expect(wasOpenSettingsCalled) == true
+                            }
                         }
                     }
                 }
