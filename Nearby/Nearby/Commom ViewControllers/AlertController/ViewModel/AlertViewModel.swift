@@ -14,7 +14,7 @@ final class AlertViewModel {
     let title: String?
     let message: String?
     let preferredStyle: UIAlertController.Style
-    let confirmActionViewModel: AlertActionViewModel?
+    let actionsViewModels: [AlertActionViewModel]
     let cancelActionViewModel: AlertActionViewModel?
     
     // MARK: - Initialization
@@ -22,13 +22,13 @@ final class AlertViewModel {
     init(title: String?,
          message: String?,
          preferredStyle: UIAlertController.Style,
-         confirmActionViewModel: AlertActionViewModel?,
+         actionsViewModels: [AlertActionViewModel],
          cancelActionViewModel: AlertActionViewModel?) {
         
         self.title = title
         self.message = message
         self.preferredStyle = preferredStyle
-        self.confirmActionViewModel = confirmActionViewModel
+        self.actionsViewModels = actionsViewModels
         self.cancelActionViewModel = cancelActionViewModel
     }
 }
@@ -42,7 +42,7 @@ extension AlertViewModel: Equatable {
         return lhs.title == rhs.title &&
             lhs.message == rhs.message &&
             lhs.preferredStyle == rhs.preferredStyle &&
-            lhs.confirmActionViewModel == rhs.confirmActionViewModel &&
+            lhs.actionsViewModels == rhs.actionsViewModels &&
             lhs.cancelActionViewModel == rhs.cancelActionViewModel
     }
 }
@@ -55,14 +55,14 @@ extension AlertViewModel {
         title: String? = "Title",
         message: String? = "Message",
         preferredStyle: UIAlertController.Style = .alert,
-        confirmActionViewModel: AlertActionViewModel? = .mock(),
+        actionsViewModels: [AlertActionViewModel] = [.mock()],
         cancelActionViewModel: AlertActionViewModel? = .mock()) -> AlertViewModel {
         
         return .init(
             title: title,
             message: message,
             preferredStyle: preferredStyle,
-            confirmActionViewModel: confirmActionViewModel,
+            actionsViewModels: actionsViewModels,
             cancelActionViewModel: cancelActionViewModel)
     }
 }

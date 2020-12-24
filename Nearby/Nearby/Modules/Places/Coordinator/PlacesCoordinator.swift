@@ -8,7 +8,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import CoreLocation
 
 final class PlacesCoordinator: BaseCoordinator<Void> {
     
@@ -57,9 +56,23 @@ final class PlacesCoordinator: BaseCoordinator<Void> {
 // MARK: - Binding
 extension PlacesCoordinator {
     
-    var openMapsActionSheet: Binder<Coordinate> {
+    private var openMapsActionSheet: Binder<Coordinate> {
         return Binder(self) { target, coordinate in
-            // TODO: Open maps action sheet
+            
+            let coordinator = MapsActionSheetCoordinator(
+                coordinate: coordinate,
+                navigationController: target.navigationController
+            )
+            
+            target.coordinate(to: coordinator)
+                .subscribe(onNext: { url in
+                    UIApplication.shared.open(
+                        url,
+                        options: [:],
+                        completionHandler: nil
+                    )
+                })
+                .disposed(by: target.disposeBag)
         }
     }
 }
