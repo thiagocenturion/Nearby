@@ -64,7 +64,7 @@ extension PlacesViewController {
             .disposed(by: disposeBag)
         
         viewModel.isLoading
-            .delay(.milliseconds(300), scheduler: MainScheduler.instance)
+            .observeOn(MainScheduler.asyncInstance)
             .subscribe(onNext: { [weak self] isLoading in
                 isLoading ? self?.showLoading() : self?.hideLoading()
             })

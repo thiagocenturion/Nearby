@@ -21,17 +21,18 @@ extension Reactive where Base: UINavigationController {
                 message: alertViewModel.message,
                 preferredStyle: alertViewModel.preferredStyle
             )
+            alert.view.tintColor = #colorLiteral(red: 0.01473112591, green: 0.8120005727, blue: 0.8805894256, alpha: 1)
             
-            if let confirmActionViewModel = alertViewModel.confirmActionViewModel {
-                let confirmAction = UIAlertAction(
-                    title: confirmActionViewModel.title,
+            alertViewModel.actionsViewModels.forEach { actionViewModel in
+                let action = UIAlertAction(
+                    title: actionViewModel.title,
                     style: .default,
                     handler: { _ in
-                        alertViewModel.confirmActionViewModel?.tap.accept(())
+                        actionViewModel.tap.accept(())
                     }
                 )
                 
-                alert.addAction(confirmAction)
+                alert.addAction(action)
             }
             
             if let cancelActionViewModel = alertViewModel.cancelActionViewModel {

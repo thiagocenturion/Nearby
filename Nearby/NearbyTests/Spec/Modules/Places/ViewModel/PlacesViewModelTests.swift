@@ -124,7 +124,7 @@ final class PlacesViewModelTests: QuickSpec {
                             title: "error_message_title".localized,
                             message: networkingError.rawValue,
                             preferredStyle: .alert,
-                            confirmActionViewModel: .init(title: "error_message_confirm_button".localized),
+                            actionsViewModels: [.init(title: "error_message_confirm_button".localized)],
                             cancelActionViewModel: .init(title: "request_address_denied_cancel".localized)
                         )
                         
