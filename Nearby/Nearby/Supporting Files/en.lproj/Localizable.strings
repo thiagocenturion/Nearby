@@ -9,8 +9,17 @@
 "request_address_title" = "Location";
 "request_address_description" = "Where are you?";
 "request_address_current_location" = "USE CURRENT LOCATION";
-"request_address_register_address" = "REGISTER ADDRESS";
 "request_address_denied_title" = "Location not alowwed";
 "request_address_denied_message" = "To use the current location, go to Settings and change the Nearby location permission.";
 "request_address_denied_confirm" = "Settings";
 "request_address_denied_cancel" = "Cancel";
+
+"places_restaurant" = "Restaurant";
+"places_bar" = "Bar";
+"places_cafe" = "Cafe";
+
+"error_message_title" = "Oops!";
+"error_message_no_connection" = "No connection! Activate mobile networks or connect to a Wi-fi network.";
+"error_message_bad_request" = "We had a problem getting the data. Try again.";
+"error_message_generic" = "There was a problem, but we are already solving it. Try again later.";
+"error_message_confirm_button" = "Ok";

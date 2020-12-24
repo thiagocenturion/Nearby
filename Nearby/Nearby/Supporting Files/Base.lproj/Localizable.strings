@@ -9,8 +9,17 @@
 "request_address_title" = "Localização";
 "request_address_description" = "Onde você está?";
 "request_address_current_location" = "USAR LOCALIZAÇÃO ATUAL";
-"request_address_register_address" = "CADASTRAR ENDEREÇO";
 "request_address_denied_title" = "Localização não permitida";
 "request_address_denied_message" = "Para utilizar a localização atual, acesse os Ajustes e altere a permissão de localização de Nearby.";
 "request_address_denied_confirm" = "Ajustes";
 "request_address_denied_cancel" = "Cancelar";
+
+"places_restaurant" = "Restaurante";
+"places_bar" = "Bar";
+"places_cafe" = "Cafeteria";
+
+"error_message_title" = "Oops!";
+"error_message_no_connection" = "Sem conexão! Ative as redes móveis ou conecte-se a uma rede Wi-fi.";
+"error_message_bad_request" = "Tivemos um problema ao obter os dados. Tente novamente.";
+"error_message_generic" = "Houve um problema, mas já estamos resolvendo. Tente novamente mais tarde.";
+"error_message_confirm_button" = "Ok";
