@@ -115,7 +115,7 @@ final class RequestAddressViewModelTests: QuickSpec {
                                 title: "request_address_denied_title".localized,
                                 message: "request_address_denied_message".localized,
                                 preferredStyle: .alert,
-                                confirmActionViewModel: .init(title: "request_address_denied_confirm".localized),
+                                actionsViewModels: [.init(title: "request_address_denied_confirm".localized)],
                                 cancelActionViewModel: .init(title: "request_address_denied_cancel".localized)
                             )
                             

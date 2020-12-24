@@ -18,6 +18,11 @@
 "places_bar" = "Bar";
 "places_cafe" = "Cafe";
 
+"maps_action_sheet_apple" = "Open with Maps";
+"maps_action_sheet_google" = "Open with Google Maps";
+"maps_action_sheet_waze" = "Open with Waze";
+"maps_action_sheet_alert_cancel" = "Cancel";
+
 "error_message_title" = "Oops!";
 "error_message_no_connection" = "No connection! Activate mobile networks or connect to a Wi-fi network.";
 "error_message_bad_request" = "We had a problem getting the data. Try again.";
