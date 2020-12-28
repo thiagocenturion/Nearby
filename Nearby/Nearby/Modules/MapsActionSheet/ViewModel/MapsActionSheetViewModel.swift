@@ -13,7 +13,7 @@ final class MapsActionSheetViewModel {
     
     // MARK: - Properties
     let coordinate: Coordinate
-    let application: UIApplication
+    let application: UIApplicationType
     let appleURL: URL?
     let googleURL: URL?
     let wazeURL: URL?
@@ -26,7 +26,7 @@ final class MapsActionSheetViewModel {
     let selectedURL = PublishSubject<URL>()
     
     // MARK: - Initialization
-    init(coordinate: Coordinate, application: UIApplication) {
+    init(coordinate: Coordinate, application: UIApplicationType) {
         self.coordinate = coordinate
         self.application = application
         appleURL = URL(string: "http://maps.apple.com/?daddr=\(coordinate.latitude),\(coordinate.longitude)")
@@ -88,7 +88,7 @@ extension MapsActionSheetViewModel {
 extension MapsActionSheetViewModel {
     
     static func mock(coordinate: Coordinate = .mock(),
-                     application: UIApplication = .shared) -> MapsActionSheetViewModel {
+                     application: UIApplicationType = UIApplicationStub()) -> MapsActionSheetViewModel {
         return .init(
             coordinate: coordinate,
             application: application

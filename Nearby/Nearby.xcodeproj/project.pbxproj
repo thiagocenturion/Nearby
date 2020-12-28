@@ -25,6 +25,8 @@
 		4D3004462585C7EE00782708 /* RequestAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3004442585C7EE00782708 /* RequestAddressViewController.swift */; };
 		4D3004472585C7EE00782708 /* RequestAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D3004452585C7EE00782708 /* RequestAddressViewController.xib */; };
 		4D30044C2585C81B00782708 /* RequestAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D30044B2585C81B00782708 /* RequestAddressViewModel.swift */; };
+		4D38950E259988BF00B2C5D0 /* UIApplicationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D38950D259988BF00B2C5D0 /* UIApplicationType.swift */; };
+		4D389512259989A300B2C5D0 /* UIApplicationStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D389511259989A300B2C5D0 /* UIApplicationStub.swift */; };
 		4D5635BD2590C98B0094C5A7 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5635BC2590C98B0094C5A7 /* NetworkingError.swift */; };
 		4D5635C22590C9B10094C5A7 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5635C12590C9B10094C5A7 /* Endpoint.swift */; };
 		4D5635C82590CA140094C5A7 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5635C72590CA140094C5A7 /* Reachability.swift */; };
@@ -122,6 +124,8 @@
 		4D3004442585C7EE00782708 /* RequestAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAddressViewController.swift; sourceTree = "<group>"; };
 		4D3004452585C7EE00782708 /* RequestAddressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestAddressViewController.xib; sourceTree = "<group>"; };
 		4D30044B2585C81B00782708 /* RequestAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAddressViewModel.swift; sourceTree = "<group>"; };
+		4D38950D259988BF00B2C5D0 /* UIApplicationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationType.swift; sourceTree = "<group>"; };
+		4D389511259989A300B2C5D0 /* UIApplicationStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationStub.swift; sourceTree = "<group>"; };
 		4D5635BC2590C98B0094C5A7 /* NetworkingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
 		4D5635C12590C9B10094C5A7 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		4D5635C72590CA140094C5A7 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -394,6 +398,15 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		4D38950C259988A900B2C5D0 /* UIApplicationType */ = {
+			isa = PBXGroup;
+			children = (
+				4D38950D259988BF00B2C5D0 /* UIApplicationType.swift */,
+				4D389511259989A300B2C5D0 /* UIApplicationStub.swift */,
+			);
+			path = UIApplicationType;
+			sourceTree = "<group>";
+		};
 		4D5635BB2590C8490094C5A7 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -594,6 +607,7 @@
 		4D99E510258B90B700D632E0 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				4D38950C259988A900B2C5D0 /* UIApplicationType */,
 				4DC6E458258A4229003253B1 /* LocationManager */,
 				4D99E51D258B925600D632E0 /* UINavigationControllerType */,
 				4D99E514258B90F800D632E0 /* UIViewControllerType */,
@@ -880,6 +894,7 @@
 				4DC6E469258A46B9003253B1 /* AuthorizationStatus.swift in Sources */,
 				4D57B16B2592DA4E008B09F3 /* MeasurementFormatter+Extension.swift in Sources */,
 				4D658B91258A4AFA00E0CCD2 /* LocationManagerStub.swift in Sources */,
+				4D389512259989A300B2C5D0 /* UIApplicationStub.swift in Sources */,
 				4DE87760258799F800A52B08 /* RxKeyPaths.swift in Sources */,
 				4D5635D82590D2CC0094C5A7 /* APIRequest.swift in Sources */,
 				4DE8771A25870A2300A52B08 /* UIViewController+Extension.swift in Sources */,
@@ -912,6 +927,7 @@
 				4D042B07258DA18A007E0789 /* URLSession+Rx.swift in Sources */,
 				4D85A5FB25924A2F00587472 /* UIViewController+Rx.swift in Sources */,
 				4D1868902594297800E02A1E /* MapsActionSheetViewModel.swift in Sources */,
+				4D38950E259988BF00B2C5D0 /* UIApplicationType.swift in Sources */,
 				4D30044C2585C81B00782708 /* RequestAddressViewModel.swift in Sources */,
 				4D5D20AD2585928B00A0A453 /* SceneDelegate.swift in Sources */,
 				4DE8775B258799F800A52B08 /* RxCLLocationManagerDelegateProxy.swift in Sources */,
