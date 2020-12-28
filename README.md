@@ -47,7 +47,7 @@ The architecture pattern for this application is MVVM with Coordinator. Below, y
 ## Project Navigator
 Project Navigator for app target and unit test target:
 
-[<img src="/Images/project_navigator_app.png" align="center" width="50" hspace="0" vspace="10">](/Images/project_navigator_app.png)
+[<img src="/Images/project_navigator_app.png" align="center" width="250" hspace="0" vspace="10">](/Images/project_navigator_app.png)
 [<img src="/Images/project_navigator_tests.png" align="center" width="250" hspace="0" vspace="10">](/Images/project_navigator_tests.png)
 
 ## Meta
