@@ -40,6 +40,16 @@ Nearby uses user's current location by `CoreLocation` and gets nearby places fro
 [<img src="/Images/Screenshots/placesDark.png" align="center" width="250" hspace="0" vspace="10">](/Images/Screenshots/placesDark.png)
 [<img src="/Images/Screenshots/MapsDark.png" align="center" width="250" hspace="0" vspace="10">](/Images/Screenshots/MapsDark.png)
 
+## Architecture Pattern
+The architecture pattern for this application is MVVM with Coordinator. Below, you can view the architecture diagram for this project:
+[<img src="/Images//NearbyMVVM.png" align="center" width="100%" hspace="0" vspace="10">](/Images/NearbyMVVM.png)
+
+## Project Navigator
+Project Navigator for app target and unit test target:
+
+[<img src="/Images/project_navigator_app.png" align="center" width="50" hspace="0" vspace="10">](/Images/project_navigator_app.png)
+[<img src="/Images/project_navigator_tests.png" align="center" width="250" hspace="0" vspace="10">](/Images/project_navigator_tests.png)
+
 ## Meta
 
 Thiago Centurion – thiagocenturion@me.com
@@ -56,4 +66,3 @@ Distributed under the MIT license. See ``LICENSE`` for more information.
 [travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
 [codebeat-image]: https://codebeat.co/badges/c19b47ea-2f9d-45df-8458-b2d952fe9dad
 [codebeat-url]: https://codebeat.co/projects/github-com-vsouza-awesomeios-com
-
