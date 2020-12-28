@@ -26,6 +26,16 @@ Nearby uses user's current location by `CoreLocation` and gets nearby places fro
 - [x] JSON parses with [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON).
 - [x] Localization in both English and Portuguese.
 - [x] Supports Dark and Light mode.
+
+## Run Sample 
+1. Clone this repository.
+    ```
+    git clone https://github.com/thiagocenturion/Nearby.git
+    ```
+2. Open `Nearby/Nearby.xcodeproj` in Xcode. 
+3. Wait for Swift Package Dependencies to finish downloading.
+4. Run.
+
 ## Requirements
 
 - iOS 13.0+
@@ -43,6 +53,55 @@ Nearby uses user's current location by `CoreLocation` and gets nearby places fro
 ## Architecture Pattern
 The architecture pattern for this application is MVVM with Coordinator. Below, you can view the architecture diagram for this project:
 [<img src="/Images//NearbyMVVM.png" align="center" width="100%" hspace="0" vspace="10">](/Images/NearbyMVVM.png)
+
+## Unit Tests
+This project tests almost all MVVM-C layers. For that, it was necessary to create Stubs of UIKit native classes, such as `UIViewController`, `UINavigationController`, `CLLocationManager` and `UIApplication` using protocols.
+
+Example:
+
+```swift
+protocol UIApplicationType: NSObject {
+    func canOpenURL(_ url: URL) -> Bool
+}
+
+extension UIApplication: UIApplicationType {}
+
+```
+
+Stub:
+```swift
+#if UNIT_TEST
+
+import UIKit
+
+final class UIApplicationStub: NSObject, UIApplicationType {
+    var canOpenURLCalls: [URL] = []
+    var canOpenURLResponse = true
+    
+    func canOpenURL(_ url: URL) -> Bool {
+        canOpenURLCalls.append(url)
+        return canOpenURLResponse
+    }
+}
+
+#endif
+```
+
+Usage:
+```swift
+it("calls canOpenURL correctly") {
+                    
+    let applicationStub = UIApplicationStub()
+    
+    expect(applicationStub.canOpenURLCalls.isEmpty) == true
+    
+    _ = MapsActionSheetViewModel.mock(application: applicationStub)
+    
+    expect(applicationStub.canOpenURLCalls.count) == 2
+    expect(applicationStub.canOpenURLCalls[0]) == URL(string: "https://somestuffurl.com")
+    expect(applicationStub.canOpenURLCalls[1]) == URL(string: "https://somesecondstuffurl.com")
+}
+```
 
 ## Project Navigator
 Project Navigator for app target and unit test target:
