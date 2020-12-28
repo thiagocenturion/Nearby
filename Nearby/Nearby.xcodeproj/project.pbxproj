@@ -118,8 +118,6 @@
 		4D18688F2594297800E02A1E /* MapsActionSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsActionSheetViewModel.swift; sourceTree = "<group>"; };
 		4D18689725943A2400E02A1E /* MapsActionSheetCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsActionSheetCoordinatorTests.swift; sourceTree = "<group>"; };
 		4D18689E25943C6700E02A1E /* MapsActionSheetViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsActionSheetViewModelTests.swift; sourceTree = "<group>"; };
-		4D2784D1258880DE00B6A79A /* RxSwiftDependency.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RxSwiftDependency.h; sourceTree = "<group>"; };
-		4D2784D2258880DE00B6A79A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D30043C2585C61B00782708 /* RequestAddressCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAddressCoordinator.swift; sourceTree = "<group>"; };
 		4D3004442585C7EE00782708 /* RequestAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAddressViewController.swift; sourceTree = "<group>"; };
 		4D3004452585C7EE00782708 /* RequestAddressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestAddressViewController.xib; sourceTree = "<group>"; };
@@ -373,15 +371,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		4D2784D0258880DE00B6A79A /* RxSwiftDependency */ = {
-			isa = PBXGroup;
-			children = (
-				4D2784D1258880DE00B6A79A /* RxSwiftDependency.h */,
-				4D2784D2258880DE00B6A79A /* Info.plist */,
-			);
-			path = RxSwiftDependency;
-			sourceTree = "<group>";
-		};
 		4D2784DF258880F100B6A79A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -465,7 +454,6 @@
 				4D5D20A92585928B00A0A453 /* Nearby */,
 				4D5D20C02585928D00A0A453 /* NearbyTests */,
 				4D5D20CB2585928D00A0A453 /* NearbyUITests */,
-				4D2784D0258880DE00B6A79A /* RxSwiftDependency */,
 				4D5D20A82585928B00A0A453 /* Products */,
 				4D2784DF258880F100B6A79A /* Frameworks */,
 			);
