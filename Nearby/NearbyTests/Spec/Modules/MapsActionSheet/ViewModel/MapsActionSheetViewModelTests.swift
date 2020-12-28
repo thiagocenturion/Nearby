@@ -47,9 +47,37 @@ final class MapsActionSheetViewModelTests: QuickSpec {
             
             describe("setup") {
                 
+                it("calls canOpenURL correctly") {
+                    
+                    let coordinate = Coordinate.mock()
+                    let applicationStub = UIApplicationStub()
+                    applicationStub.canOpenURLResponse = true
+                    
+                    expect(applicationStub.canOpenURLCalls.isEmpty) == true
+                    
+                    _ = MapsActionSheetViewModel.mock(coordinate: coordinate, application: applicationStub)
+                    
+                    expect(applicationStub.canOpenURLCalls.count) == 3
+                    
+                    expect(applicationStub.canOpenURLCalls[0].url) == URL(
+                        string: "http://maps.apple.com/?daddr=\(coordinate.latitude),\(coordinate.longitude)"
+                    )
+                    
+                    expect(applicationStub.canOpenURLCalls[1].url) == URL(
+                        string: "comgooglemaps://?daddr=\(coordinate.latitude),\(coordinate.longitude)&directionsmode=driving"
+                    )
+                    
+                    expect(applicationStub.canOpenURLCalls[2].url) == URL(
+                        string: "waze://?ll=\(coordinate.latitude),\(coordinate.longitude)&navigate=false"
+                    )
+                }
+                
                 it("configures actionsViewModels correctly") {
                     
-                    let viewModel = MapsActionSheetViewModel.mock()
+                    let applicationStub = UIApplicationStub()
+                    applicationStub.canOpenURLResponse = true
+                    
+                    let viewModel = MapsActionSheetViewModel.mock(application: applicationStub)
                     
                     expect(viewModel.actionsViewModels) == [
                         .init(title: "maps_action_sheet_apple".localized),
